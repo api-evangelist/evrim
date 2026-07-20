@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/evrim-openapi-original.yml
+docs: https://docs.evrim.ai
+summary:
+  types:
+  - http
+  api_key_in: []
+  oauth2_flows: []
+notes: >-
+  Evrim authenticates every operation with a single Knox-issued API token
+  presented as an HTTP Bearer credential (Authorization: Bearer <token>). The
+  official Python SDK reads the token from the EVRIM_API_TOKEN environment
+  variable (or an `api_token` client keyword). All 91 operations apply the
+  knoxApiToken scheme; there is no OAuth2/OIDC and no API-key query or header
+  parameter.
+schemes:
+- name: knoxApiToken
+  type: http
+  scheme: bearer
+  description: >-
+    Django Knox API token presented as a Bearer credential in the Authorization
+    header. Token supplied to the SDK via EVRIM_API_TOKEN.
+  applied_to_all_operations: true
+  sources:
+  - openapi/evrim-openapi-original.yml
+  evidence:
+  - https://github.com/evrimai/python-client/blob/HEAD/README.md
