@@ -1,0 +1,216 @@
+openapi: 3.0.3
+info:
+  title: Evrim answers prompt-templates API
+  version: 0.5.18
+  description: Data when and how you want it.
+tags:
+- name: prompt-templates
+paths:
+  /prod/v0/prompt-templates/:
+    get:
+      operationId: prompt_templates_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - prompt-templates
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPromptTemplateList'
+          description: ''
+    post:
+      operationId: prompt_templates_create
+      tags:
+      - prompt-templates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromptTemplate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PromptTemplate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PromptTemplate'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptTemplate'
+          description: ''
+  /prod/v0/prompt-templates/{id}/:
+    get:
+      operationId: prompt_templates_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this prompt template.
+        required: true
+      tags:
+      - prompt-templates
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromptTemplate'
+          description: ''
+components:
+  schemas:
+    StatusEnum:
+      enum:
+      - W
+      - P
+      - C
+      - F
+      type: string
+      description: '* `W` - WAITING
+
+        * `P` - PROCESSING
+
+        * `C` - COMPLETED
+
+        * `F` - FAILED'
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+      required:
+      - fields
+      - id
+      - name
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type: integer
+          writeOnly: true
+          nullable: true
+        rel_template:
+          type: integer
+          readOnly: true
+          nullable: true
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          nullable: true
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
+      required:
+      - description
+      - name
+      - rel_template
+      - type
+    PaginatedPromptTemplateList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromptTemplate'
+    PromptTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        prompt:
+          type: string
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          readOnly: true
+      required:
+      - id
+      - prompt
+      - template
+  securitySchemes:
+    knoxApiToken:
+      type: http
+      scheme: bearer

@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: Evrim answers health API
+  version: 0.5.18
+  description: Data when and how you want it.
+tags:
+- name: health
+paths:
+  /prod/v0/health/profile/{profile_id}/latest/:
+    get:
+      operationId: health_profile_latest_retrieve
+      description: Get the latest snapshot health for a profile
+      parameters:
+      - in: path
+        name: profile_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - health
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          description: No response body
+  /prod/v0/health/snapshot/{snapshot_id}/:
+    get:
+      operationId: health_snapshot_retrieve
+      description: Get the health of a profile snapshot
+      parameters:
+      - in: path
+        name: snapshot_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - health
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          description: No response body
+components:
+  securitySchemes:
+    knoxApiToken:
+      type: http
+      scheme: bearer

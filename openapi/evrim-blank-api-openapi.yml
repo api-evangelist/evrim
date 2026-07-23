@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Evrim answers blank API
+  version: 0.5.18
+  description: Data when and how you want it.
+tags:
+- name: blank
+paths:
+  /prod/v0/blank/profile/:
+    post:
+      operationId: blank_profile_create
+      tags:
+      - blank
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlankProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlankProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BlankProfile'
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlankProfile'
+          description: ''
+  /prod/v0/blank/template/:
+    post:
+      operationId: blank_template_create
+      tags:
+      - blank
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlankTemplate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlankTemplate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BlankTemplate'
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlankTemplate'
+          description: ''
+components:
+  schemas:
+    BlankTemplate:
+      type: object
+      description: Create a blank template
+      properties:
+        id:
+          type: integer
+          readOnly: true
+      required:
+      - id
+    BlankProfile:
+      type: object
+      description: Create a blank profile
+      properties:
+        id:
+          type: integer
+          readOnly: true
+      required:
+      - id
+  securitySchemes:
+    knoxApiToken:
+      type: http
+      scheme: bearer

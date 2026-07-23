@@ -1,0 +1,917 @@
+openapi: 3.0.3
+info:
+  title: Evrim answers profiles API
+  version: 0.5.18
+  description: Data when and how you want it.
+tags:
+- name: profiles
+paths:
+  /prod/v0/profiles/:
+    get:
+      operationId: profiles_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - in: query
+        name: specification
+        schema:
+          type: string
+      tags:
+      - profiles
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProfileList'
+          description: ''
+    post:
+      operationId: profiles_create
+      tags:
+      - profiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Profile'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /prod/v0/profiles/{id}/:
+    get:
+      operationId: profiles_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this profile.
+        required: true
+      tags:
+      - profiles
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    put:
+      operationId: profiles_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this profile.
+        required: true
+      tags:
+      - profiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Profile'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    patch:
+      operationId: profiles_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this profile.
+        required: true
+      tags:
+      - profiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProfile'
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+    delete:
+      operationId: profiles_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this profile.
+        required: true
+      tags:
+      - profiles
+      security:
+      - knoxApiToken: []
+      responses:
+        '204':
+          description: No response body
+  /prod/v0/profiles/{profile_id}/collections/:
+    post:
+      operationId: profiles_collections_create
+      description: Add a profile to a collection
+      parameters:
+      - in: path
+        name: profile_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - profiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileToCollection'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProfileToCollection'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProfileToCollection'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileToCollection'
+          description: ''
+  /prod/v0/profiles/{profile_id}/created-fields/:
+    post:
+      operationId: profiles_created_fields_create
+      parameters:
+      - in: path
+        name: profile_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - profiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatedFieldsToProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreatedFieldsToProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreatedFieldsToProfile'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatedFieldsToProfile'
+          description: ''
+  /prod/v0/profiles/{profile_id}/latest/:
+    get:
+      operationId: profiles_latest_list
+      description: Get the latest snapshot for a profile based on the profile id and created date
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - in: path
+        name: profile_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - profiles
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedLatestSnapshotList'
+          description: ''
+  /prod/v0/profiles/{profile_id}/latest/relationships/:
+    get:
+      operationId: profiles_latest_relationships_retrieve
+      description: Get relationships for a snapshot as records for easy usage
+      parameters:
+      - in: path
+        name: profile_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - profiles
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          description: No response body
+  /prod/v0/profiles/{profile_id}/reports/:
+    get:
+      operationId: profiles_reports_list
+      description: Get all reports associated with a profile by looking up outlines and then reports
+      parameters:
+      - in: path
+        name: profile_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - profiles
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Report'
+          description: ''
+  /prod/v0/profiles/{profile_id}/snapshots/:
+    get:
+      operationId: profiles_snapshots_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - in: path
+        name: profile_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - profiles
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCreateProfileSnapshotList'
+          description: ''
+    post:
+      operationId: profiles_snapshots_create
+      parameters:
+      - in: path
+        name: profile_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - profiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProfileSnapshot'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateProfileSnapshot'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateProfileSnapshot'
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProfileSnapshot'
+          description: ''
+  /prod/v0/profiles/{profile_id}/snapshots/{snapshot_id}/:
+    get:
+      operationId: profiles_snapshots_retrieve
+      parameters:
+      - in: path
+        name: profile_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      - in: path
+        name: snapshot_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - profiles
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProfileSnapshot'
+          description: ''
+  /prod/v0/profiles/{profile_id}/tag/:
+    post:
+      operationId: profiles_tag_create
+      description: Tag a profile
+      parameters:
+      - in: path
+        name: profile_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - profiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TagProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TagProfile'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagProfile'
+          description: ''
+components:
+  schemas:
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+      required:
+      - fields
+      - id
+      - name
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+          readOnly: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
+          readOnly: true
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+          readOnly: true
+      required:
+      - answers
+      - fields
+      - id
+      - reports
+      - status
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type: integer
+          writeOnly: true
+          nullable: true
+        rel_template:
+          type: integer
+          readOnly: true
+          nullable: true
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          nullable: true
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
+      required:
+      - description
+      - name
+      - rel_template
+      - type
+    CreateProfileSnapshot:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+          readOnly: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
+          readOnly: true
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+          readOnly: true
+      required:
+      - answers
+      - fields
+      - id
+      - reports
+    Outline:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        report_title:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        section_titles:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        outline:
+          nullable: true
+        perspective:
+          type: string
+          maxLength: 255
+      required:
+      - id
+      - perspective
+      - profile_id
+      - report_title
+      - section_titles
+    CreatedFieldsToProfile:
+      type: object
+      properties:
+        field_ids:
+          type: array
+          items:
+            type: integer
+          writeOnly: true
+      required:
+      - field_ids
+    TagProfile:
+      type: object
+      properties:
+        tag_id:
+          type: integer
+          writeOnly: true
+      required:
+      - tag_id
+    PaginatedProfileList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+    PatchedProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        template_id:
+          type: integer
+          writeOnly: true
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        specification:
+          type: string
+          maxLength: 510
+        source_map:
+          writeOnly: true
+        source:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          readOnly: true
+        snapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snapshot'
+          readOnly: true
+    PaginatedCreateProfileSnapshotList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateProfileSnapshot'
+    LatestSnapshot:
+      type: object
+      properties:
+        specification:
+          type: string
+          readOnly: true
+          maxLength: 255
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
+          readOnly: true
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+          readOnly: true
+      required:
+      - answers
+      - fields
+      - specification
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        outline_id:
+          type: integer
+          writeOnly: true
+        outline:
+          allOf:
+          - $ref: '#/components/schemas/Outline'
+          readOnly: true
+        report:
+          readOnly: true
+      required:
+      - id
+      - outline
+      - outline_id
+      - profile_id
+      - report
+    ProfileToCollection:
+      type: object
+      properties:
+        collection_id:
+          type: integer
+          writeOnly: true
+      required:
+      - collection_id
+    CreatedField:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        specification:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        source_entity_type:
+          type: string
+          writeOnly: true
+          nullable: true
+          maxLength: 255
+        description:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        type:
+          type: string
+          writeOnly: true
+          maxLength: 3
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        enum_many:
+          type: boolean
+          writeOnly: true
+        rel_template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          writeOnly: true
+        field:
+          allOf:
+          - $ref: '#/components/schemas/Field'
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        value:
+          readOnly: true
+        sources:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+          nullable: true
+        directed_source:
+          type: string
+          writeOnly: true
+          nullable: true
+          maxLength: 255
+        keyword_search:
+          type: boolean
+          nullable: true
+        raw_documents:
+          type: boolean
+          nullable: true
+      required:
+      - description
+      - field
+      - id
+      - name
+      - specification
+      - status
+      - type
+      - value
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        template_id:
+          type: integer
+          writeOnly: true
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        specification:
+          type: string
+          maxLength: 510
+        source_map:
+          writeOnly: true
+        source:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          readOnly: true
+        snapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snapshot'
+          readOnly: true
+      required:
+      - id
+      - snapshots
+      - specification
+      - template
+      - template_id
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        answer:
+          readOnly: true
+        question:
+          type: string
+          readOnly: true
+          maxLength: 510
+        source:
+          type: string
+          nullable: true
+          maxLength: 510
+      required:
+      - answer
+      - id
+      - question
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+      required:
+      - id
+      - name
+    PaginatedLatestSnapshotList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LatestSnapshot'
+  securitySchemes:
+    knoxApiToken:
+      type: http
+      scheme: bearer

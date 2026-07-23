@@ -1,0 +1,379 @@
+openapi: 3.0.3
+info:
+  title: Evrim answers compose API
+  version: 0.5.18
+  description: Data when and how you want it.
+tags:
+- name: compose
+paths:
+  /prod/v0/compose/profile/snapshot/:
+    post:
+      operationId: compose_profile_snapshot_create
+      tags:
+      - compose
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComposeProfileSnapshot'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ComposeProfileSnapshot'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ComposeProfileSnapshot'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComposeProfileSnapshot'
+          description: ''
+components:
+  schemas:
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+      required:
+      - fields
+      - id
+      - name
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+          readOnly: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
+          readOnly: true
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+          readOnly: true
+      required:
+      - answers
+      - fields
+      - id
+      - reports
+      - status
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type: integer
+          writeOnly: true
+          nullable: true
+        rel_template:
+          type: integer
+          readOnly: true
+          nullable: true
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          nullable: true
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
+      required:
+      - description
+      - name
+      - rel_template
+      - type
+    Outline:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        report_title:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        section_titles:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        outline:
+          nullable: true
+        perspective:
+          type: string
+          maxLength: 255
+      required:
+      - id
+      - perspective
+      - profile_id
+      - report_title
+      - section_titles
+    ComposeProfileSnapshot:
+      type: object
+      description: Compose a profile snapshot from a template, specification, fields, and answers
+      properties:
+        template_id:
+          type: integer
+          writeOnly: true
+        specification:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        created_field_ids:
+          type: array
+          items:
+            type: integer
+          writeOnly: true
+        answer_ids:
+          type: array
+          items:
+            type: integer
+          writeOnly: true
+        profile:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+      required:
+      - answer_ids
+      - created_field_ids
+      - profile
+      - specification
+      - template_id
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        outline_id:
+          type: integer
+          writeOnly: true
+        outline:
+          allOf:
+          - $ref: '#/components/schemas/Outline'
+          readOnly: true
+        report:
+          readOnly: true
+      required:
+      - id
+      - outline
+      - outline_id
+      - profile_id
+      - report
+    CreatedField:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        specification:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        source_entity_type:
+          type: string
+          writeOnly: true
+          nullable: true
+          maxLength: 255
+        description:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        type:
+          type: string
+          writeOnly: true
+          maxLength: 3
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        enum_many:
+          type: boolean
+          writeOnly: true
+        rel_template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          writeOnly: true
+        field:
+          allOf:
+          - $ref: '#/components/schemas/Field'
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        value:
+          readOnly: true
+        sources:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+          nullable: true
+        directed_source:
+          type: string
+          writeOnly: true
+          nullable: true
+          maxLength: 255
+        keyword_search:
+          type: boolean
+          nullable: true
+        raw_documents:
+          type: boolean
+          nullable: true
+      required:
+      - description
+      - field
+      - id
+      - name
+      - specification
+      - status
+      - type
+      - value
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        template_id:
+          type: integer
+          writeOnly: true
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        specification:
+          type: string
+          maxLength: 510
+        source_map:
+          writeOnly: true
+        source:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          readOnly: true
+        snapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snapshot'
+          readOnly: true
+      required:
+      - id
+      - snapshots
+      - specification
+      - template
+      - template_id
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        answer:
+          readOnly: true
+        question:
+          type: string
+          readOnly: true
+          maxLength: 510
+        source:
+          type: string
+          nullable: true
+          maxLength: 510
+      required:
+      - answer
+      - id
+      - question
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+      required:
+      - id
+      - name
+  securitySchemes:
+    knoxApiToken:
+      type: http
+      scheme: bearer

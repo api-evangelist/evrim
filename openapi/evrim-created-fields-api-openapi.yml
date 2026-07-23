@@ -1,0 +1,446 @@
+openapi: 3.0.3
+info:
+  title: Evrim answers created-fields API
+  version: 0.5.18
+  description: Data when and how you want it.
+tags:
+- name: created-fields
+paths:
+  /prod/v0/created-fields/:
+    get:
+      operationId: created_fields_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - created-fields
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCreatedFieldList'
+          description: ''
+    post:
+      operationId: created_fields_create
+      tags:
+      - created-fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatedField'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreatedField'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreatedField'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatedField'
+          description: ''
+  /prod/v0/created-fields/{field_id}/profile/:
+    post:
+      operationId: created_fields_profile_create
+      description: Attach a created field to a profile
+      parameters:
+      - in: path
+        name: field_id
+        schema:
+          type: string
+          pattern: ^\d+$
+        required: true
+      tags:
+      - created-fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatedFieldToProfile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreatedFieldToProfile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreatedFieldToProfile'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          description: No response body
+  /prod/v0/created-fields/{id}/:
+    get:
+      operationId: created_fields_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this created field.
+        required: true
+      tags:
+      - created-fields
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatedField'
+          description: ''
+    put:
+      operationId: created_fields_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this created field.
+        required: true
+      tags:
+      - created-fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatedField'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreatedField'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreatedField'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatedField'
+          description: ''
+    patch:
+      operationId: created_fields_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this created field.
+        required: true
+      tags:
+      - created-fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCreatedField'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCreatedField'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCreatedField'
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatedField'
+          description: ''
+    delete:
+      operationId: created_fields_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this created field.
+        required: true
+      tags:
+      - created-fields
+      security:
+      - knoxApiToken: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+      required:
+      - fields
+      - id
+      - name
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type: integer
+          writeOnly: true
+          nullable: true
+        rel_template:
+          type: integer
+          readOnly: true
+          nullable: true
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          nullable: true
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
+      required:
+      - description
+      - name
+      - rel_template
+      - type
+    PaginatedCreatedFieldList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
+    CreatedFieldToProfile:
+      type: object
+      properties:
+        profile_id:
+          type: integer
+          writeOnly: true
+      required:
+      - profile_id
+    CreatedField:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        specification:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        source_entity_type:
+          type: string
+          writeOnly: true
+          nullable: true
+          maxLength: 255
+        description:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        type:
+          type: string
+          writeOnly: true
+          maxLength: 3
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        enum_many:
+          type: boolean
+          writeOnly: true
+        rel_template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          writeOnly: true
+        field:
+          allOf:
+          - $ref: '#/components/schemas/Field'
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        value:
+          readOnly: true
+        sources:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+          nullable: true
+        directed_source:
+          type: string
+          writeOnly: true
+          nullable: true
+          maxLength: 255
+        keyword_search:
+          type: boolean
+          nullable: true
+        raw_documents:
+          type: boolean
+          nullable: true
+      required:
+      - description
+      - field
+      - id
+      - name
+      - specification
+      - status
+      - type
+      - value
+    PatchedCreatedField:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        specification:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        source_entity_type:
+          type: string
+          writeOnly: true
+          nullable: true
+          maxLength: 255
+        description:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        type:
+          type: string
+          writeOnly: true
+          maxLength: 3
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        enum_many:
+          type: boolean
+          writeOnly: true
+        rel_template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          writeOnly: true
+        field:
+          allOf:
+          - $ref: '#/components/schemas/Field'
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        value:
+          readOnly: true
+        sources:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+          nullable: true
+        directed_source:
+          type: string
+          writeOnly: true
+          nullable: true
+          maxLength: 255
+        keyword_search:
+          type: boolean
+          nullable: true
+        raw_documents:
+          type: boolean
+          nullable: true
+  securitySchemes:
+    knoxApiToken:
+      type: http
+      scheme: bearer

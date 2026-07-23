@@ -1,0 +1,539 @@
+openapi: 3.0.3
+info:
+  title: Evrim answers extract API
+  version: 0.5.18
+  description: Data when and how you want it.
+tags:
+- name: extract
+paths:
+  /prod/v0/extract/command/:
+    get:
+      operationId: extract_command_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - extract
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedExtractionCommandList'
+          description: ''
+    post:
+      operationId: extract_command_create
+      tags:
+      - extract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractionCommand'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ExtractionCommand'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ExtractionCommand'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionCommand'
+          description: ''
+  /prod/v0/extract/command/{id}/:
+    get:
+      operationId: extract_command_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this extraction.
+        required: true
+      tags:
+      - extract
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionCommand'
+          description: ''
+  /prod/v0/extract/raw/:
+    get:
+      operationId: extract_raw_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - extract
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedExtractionList'
+          description: ''
+    post:
+      operationId: extract_raw_create
+      tags:
+      - extract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Extraction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Extraction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Extraction'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Extraction'
+          description: ''
+  /prod/v0/extract/raw/{id}/:
+    get:
+      operationId: extract_raw_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this extraction.
+        required: true
+      tags:
+      - extract
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Extraction'
+          description: ''
+  /prod/v0/extract/relationship/:
+    get:
+      operationId: extract_relationship_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - extract
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedExtractRelationshipList'
+          description: ''
+    post:
+      operationId: extract_relationship_create
+      tags:
+      - extract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractRelationship'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ExtractRelationship'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ExtractRelationship'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractRelationship'
+          description: ''
+  /prod/v0/extract/relationship/{id}/:
+    get:
+      operationId: extract_relationship_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this extract relationship.
+        required: true
+      tags:
+      - extract
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractRelationship'
+          description: ''
+  /prod/v0/extract/value/:
+    get:
+      operationId: extract_value_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - extract
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedExtractValueList'
+          description: ''
+    post:
+      operationId: extract_value_create
+      tags:
+      - extract
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractValue'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ExtractValue'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ExtractValue'
+        required: true
+      security:
+      - knoxApiToken: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractValue'
+          description: ''
+  /prod/v0/extract/value/{id}/:
+    get:
+      operationId: extract_value_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this extract value.
+        required: true
+      tags:
+      - extract
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractValue'
+          description: ''
+components:
+  schemas:
+    ExtractRelationship:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        specification:
+          type: string
+          maxLength: 510
+        source:
+          type: string
+          maxLength: 510
+        relationship:
+          type: string
+          maxLength: 510
+        target:
+          type: string
+          maxLength: 510
+        url:
+          type: string
+          maxLength: 510
+        extraction:
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+      required:
+      - extraction
+      - id
+      - relationship
+      - source
+      - specification
+      - status
+      - target
+      - url
+    PaginatedExtractionCommandList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionCommand'
+    PaginatedExtractValueList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractValue'
+    ExtractionCommand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        query:
+          type: string
+          maxLength: 510
+        extraction:
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        error:
+          type: string
+          readOnly: true
+          maxLength: 1000
+      required:
+      - error
+      - extraction
+      - id
+      - query
+      - status
+    ExtractValue:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        name:
+          type: string
+          maxLength: 510
+        type:
+          type: string
+          maxLength: 510
+        description:
+          type: string
+          maxLength: 510
+        specification:
+          type: string
+          maxLength: 510
+        rerank:
+          type: boolean
+          default: true
+        source:
+          type: string
+          maxLength: 510
+        raw_documents:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        urls:
+          type: array
+          items:
+            type: string
+            maxLength: 510
+          nullable: true
+        extraction:
+          readOnly: true
+      required:
+      - description
+      - extraction
+      - id
+      - name
+      - source
+      - specification
+      - status
+      - type
+    Extraction:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        query:
+          type: string
+          maxLength: 510
+        source:
+          type: string
+          maxLength: 510
+        extraction:
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        error:
+          type: string
+          readOnly: true
+          maxLength: 1000
+      required:
+      - error
+      - extraction
+      - id
+      - query
+      - source
+      - status
+    PaginatedExtractRelationshipList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractRelationship'
+    PaginatedExtractionList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Extraction'
+  securitySchemes:
+    knoxApiToken:
+      type: http
+      scheme: bearer

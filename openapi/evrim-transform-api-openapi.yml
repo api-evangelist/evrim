@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: Evrim answers transform API
+  version: 0.5.18
+  description: Data when and how you want it.
+tags:
+- name: transform
+paths:
+  /prod/v0/transform/profile/{profile_id}/latest/:
+    get:
+      operationId: transform_profile_latest_retrieve
+      description: Transform a profile snapshot into a tabular format
+      parameters:
+      - in: path
+        name: profile_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - transform
+      security:
+      - knoxApiToken: []
+      responses:
+        '200':
+          description: No response body
+components:
+  securitySchemes:
+    knoxApiToken:
+      type: http
+      scheme: bearer
