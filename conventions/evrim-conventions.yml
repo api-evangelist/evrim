@@ -1,0 +1,52 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/evrim-openapi-original.yml
+notes: >-
+  Cross-cutting request/response semantics for the Evrim API (Django REST
+  Framework + drf-spectacular). Derived from the OpenAPI plus the official
+  Python SDK conventions. No idempotency-key contract is documented, so no
+  Idempotency pointer is emitted.
+authentication:
+  style: bearer-token
+  header: Authorization
+  scheme: Bearer
+  detail: Knox API token; see authentication/evrim-authentication.yml
+versioning:
+  style: uri-path
+  current: v0
+  base_path: /prod/v0/
+  api_version: 0.5.18
+pagination:
+  style: page-number
+  detail: >-
+    List endpoints return DRF-style paginated envelopes (the Paginated*List
+    response schemas), with `count`, `next`, `previous`, and `results[]`.
+  request_params:
+  - name: page
+    in: query
+  response_fields:
+  - count
+  - next
+  - previous
+  - results
+idempotency:
+  supported: false
+  detail: No Idempotency-Key header or idempotent-write contract is documented.
+error_envelope:
+  format: drf-default
+  detail: >-
+    The OpenAPI declares only 2xx/204 responses; error bodies follow the Django
+    REST Framework default shape (a `detail` string for auth/permission errors,
+    or per-field validation maps on 400). Not RFC 9457 problem+json.
+  observed:
+  - status: 401
+    body: '{"detail": "Authentication required..."}'
+    source: live probe of https://api.evrim.ai/docs
+rate_limiting:
+  documented: false
+request_tracing:
+  documented: false
+cross_links:
+  authentication: authentication/evrim-authentication.yml
+  lifecycle: lifecycle/evrim-lifecycle.yml
+  data_model: data-model/evrim-data-model.yml

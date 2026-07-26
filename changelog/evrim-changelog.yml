@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/evrimai/python-client/blob/HEAD/CHANGELOG.md
+scope: python-sdk
+scheme: semver
+tooling: release-please + conventional-commits
+current_version: 2.8.0
+note: >-
+  This is the dated changelog for the official Evrim Python SDK
+  (github.com/evrimai/python-client), the closest public dated release history
+  for the Evrim API. The API document itself reports version 0.5.18. Recent
+  window only; the live CHANGELOG is the source of truth.
+entries:
+- version: 2.8.0
+  date: '2025-03-27'
+  additions:
+  - api manual updates (#68)
+  breaking: false
+- version: 2.7.0
+  date: '2025-03-27'
+  additions:
+  - api update (#64, #66)
+  breaking: false
+- version: 2.6.1
+  date: '2025-03-20'
+  additions:
+  - api update (#62)
+  fixes:
+  - ci ensure pip is always available (#60)
+  - remove publishing patch (#61)
+  - handle more discriminated union shapes (#59)
+  breaking: false
+- version: 2.6.0
+  date: '2025-03-12'
+  additions:
+  - api update (#52)
+  breaking: false

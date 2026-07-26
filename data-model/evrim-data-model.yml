@@ -1,0 +1,107 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/evrim-openapi-original.yml
+summary: >-
+  Entity-relationship graph derived from the Evrim OpenAPI schemas and their
+  id-reference fields. Evrim builds structured intelligence Profiles from
+  Templates (collections of Fields / Questions), captures point-in-time
+  Snapshots, extracts Values/Relationships, and organizes Profiles into
+  Collections with Tags. Costs are tracked per Answer / Field / Snapshot.
+entities:
+- name: Template
+  description: A reusable specification of Fields/Questions used to build Profiles.
+- name: Field
+  description: A field definition attached to a Template (rel_template_id).
+- name: CreatedField
+  description: An ad-hoc field created against a Profile.
+- name: Profile
+  description: A structured intelligence entity built from a Template.
+- name: Snapshot
+  description: A point-in-time capture of a Profile.
+- name: Answer
+  description: An answer produced for a question/field within a Profile.
+- name: Collection
+  description: A grouping of Profiles.
+- name: Tag
+  description: A label applied to Profiles / Collections.
+- name: Question
+  description: A question available to Templates/Profiles.
+- name: PromptTemplate
+  description: A prompt template bound to a Template.
+- name: Report
+  description: A report generated from a Profile outline.
+- name: Outline
+  description: The outline of a Profile used to generate Reports.
+- name: BulkJob
+  description: A bulk profile-generation job over a Template.
+- name: Extraction
+  description: Extracted values/relationships/commands from source content.
+relationships:
+- from: Field
+  to: Template
+  type: belongs_to
+  via: rel_template_id
+- from: FieldToTemplate
+  to: Template
+  type: belongs_to
+  via: template_id
+- from: Profile
+  to: Template
+  type: belongs_to
+  via: template_id
+- from: CreatedFieldToProfile
+  to: Profile
+  type: belongs_to
+  via: profile_id
+- from: Snapshot
+  to: Profile
+  type: belongs_to
+  via: profile_id
+- from: Answer
+  to: Profile
+  type: belongs_to
+  via: profile_id
+- from: AnswerCosts
+  to: Answer
+  type: belongs_to
+  via: answer_id
+- from: CreatedFieldCosts
+  to: CreatedField
+  type: belongs_to
+  via: field_id
+- from: ProfileToCollection
+  to: Collection
+  type: belongs_to
+  via: collection_id
+- from: BulkProfilesToCollection
+  to: Collection
+  type: belongs_to
+  via: collection_id
+- from: TagToCollection
+  to: Collection
+  type: belongs_to
+  via: collection_id
+- from: TagProfile
+  to: Tag
+  type: belongs_to
+  via: tag_id
+- from: BulkJob
+  to: Template
+  type: belongs_to
+  via: template_id
+- from: Report
+  to: Profile
+  type: belongs_to
+  via: profile_id
+- from: Report
+  to: Outline
+  type: belongs_to
+  via: outline_id
+- from: Outline
+  to: Profile
+  type: belongs_to
+  via: profile_id
+- from: PromptTemplate
+  to: Template
+  type: belongs_to
+  via: template

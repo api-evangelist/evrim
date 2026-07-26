@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: searched
+source: https://pypi.org/project/evrim/
+packages:
+- language: python
+  registry: pypi
+  name: evrim
+  url: https://pypi.org/project/evrim/
+  install: pip install evrim
+  official: true
+  repository: https://github.com/evrimai/python-client
+  summary: >-
+    The official Python library for the Evrim REST API (Python 3.8+),
+    Stainless-generated, with synchronous and asynchronous httpx clients and
+    typed request params / Pydantic response models.
+related_first_party:
+- note: >-
+    The evrimai GitHub org also publishes official Python clients for two
+    adjacent products (distinct base APIs, not the Evrim API surface): fleet-client
+    (the "fleet" API) and cartography-client (the "cartography" API). Listed for
+    completeness; not counted as Evrim API SDKs.
+  packages:
+  - name: fleet-client
+    repository: https://github.com/evrimai/fleet-client
+    language: python
+  - name: cartography-client
+    repository: https://github.com/evrimai/cartography-client
+    language: python

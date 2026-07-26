@@ -1,0 +1,60 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/evrim-openapi-original.yml
+note: >-
+  No official hosted MCP server for the Evrim REST API was found. (The evrimai
+  org publishes a `signal-mcp` project, but that is an MCP wrapper around
+  signal-cli messaging, not the Evrim API.) The tools below are a CANDIDATE list
+  derived from the marquee Evrim OpenAPI operations, one tool per operationId.
+server:
+  name: evrim
+  transport: http
+  base_url: https://api.evrim.ai
+  auth: bearer (Knox API token; EVRIM_API_TOKEN)
+tools:
+- name: list_profiles
+  description: List intelligence profiles.
+  source_operation: openapi/evrim-openapi-original.yml#profiles_list
+- name: create_profile
+  description: Create a profile from a template specification.
+  source_operation: openapi/evrim-openapi-original.yml#profiles_create
+- name: get_profile
+  description: Retrieve a single profile by id.
+  source_operation: openapi/evrim-openapi-original.yml#profiles_retrieve
+- name: create_profile_snapshot
+  description: Capture a point-in-time snapshot of a profile.
+  source_operation: openapi/evrim-openapi-original.yml#profiles_snapshots_create
+- name: get_latest_profile_snapshot
+  description: Get the latest snapshot for a profile.
+  source_operation: openapi/evrim-openapi-original.yml#profiles_latest_list
+- name: list_templates
+  description: List profile templates.
+  source_operation: openapi/evrim-openapi-original.yml#templates_list
+- name: create_template
+  description: Create a new template.
+  source_operation: openapi/evrim-openapi-original.yml#templates_create
+- name: create_field
+  description: Create a field definition.
+  source_operation: openapi/evrim-openapi-original.yml#fields_create
+- name: list_collections
+  description: List profile collections.
+  source_operation: openapi/evrim-openapi-original.yml#collections_list
+- name: create_collection
+  description: Create a collection of profiles.
+  source_operation: openapi/evrim-openapi-original.yml#collections_create
+- name: create_extract_command
+  description: Run an extraction command over source content.
+  source_operation: openapi/evrim-openapi-original.yml#extract_command_create
+- name: extract_relationships
+  description: Extract relationships from content.
+  source_operation: openapi/evrim-openapi-original.yml#extract_relationship_create
+- name: list_tags
+  description: List tags.
+  source_operation: openapi/evrim-openapi-original.yml#tags_list
+- name: compose_profile_snapshot
+  description: Compose a profile snapshot from a template.
+  source_operation: openapi/evrim-openapi-original.yml#compose_profile_snapshot_create
+- name: list_questions
+  description: List available questions.
+  source_operation: openapi/evrim-openapi-original.yml#questions_list

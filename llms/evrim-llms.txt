@@ -1,0 +1,26 @@
+# Evrim
+
+> Evrim is the upstream signal layer for U.S. financial institutions, the defense industrial base, and federal agencies. The Evrim REST API (v0.5.18, "Data when and how you want it.") builds structured intelligence Profiles from reusable Templates and Fields, captures point-in-time Snapshots, and extracts values and relationships from source content. Authentication is a Knox-issued API token presented as an HTTP Bearer credential.
+
+## APIs
+
+- [Evrim API](https://api.evrim.ai): Production REST API base URL. 91 operations across profiles, templates, fields, snapshots, extract, collections, tags, answers, costs, and health.
+- [OpenAPI (original)](https://raw.githubusercontent.com/api-evangelist/evrim/refs/heads/main/openapi/evrim-openapi-original.yml): OpenAPI 3.0.3 harvested from the Stainless SDK spec.
+
+## SDKs
+
+- [evrim (Python)](https://pypi.org/project/evrim/): Official Python library (Python 3.8+), sync + async httpx clients. `pip install evrim`. Source: https://github.com/evrimai/python-client
+
+## Docs
+
+- [Documentation](https://docs.evrim.ai): REST API documentation.
+- [Website](https://www.evrim.ai/): Company site.
+- [Python client README](https://github.com/evrimai/python-client): Install, auth (EVRIM_API_TOKEN), and usage.
+- [SDK api.md](https://github.com/evrimai/python-client/blob/HEAD/api.md): Full resource/method surface of the Python client.
+
+## Artifacts
+
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/evrim/refs/heads/main/authentication/evrim-authentication.yml): Knox bearer-token auth profile.
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/evrim/refs/heads/main/conventions/evrim-conventions.yml): Pagination, versioning, error envelope.
+- [Data model](https://raw.githubusercontent.com/api-evangelist/evrim/refs/heads/main/data-model/evrim-data-model.yml): Entity-relationship graph.
+- [Changelog](https://raw.githubusercontent.com/api-evangelist/evrim/refs/heads/main/changelog/evrim-changelog.yml): Python SDK release history.

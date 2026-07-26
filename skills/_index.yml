@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/evrim-openapi-original.yml
+skills:
+- file: evrim-build-profile-from-template.md
+  name: Build an intelligence profile from a template
+  api: openapi/evrim-openapi-original.yml
+  operations: [templates_create, fields_create, profiles_create, profiles_retrieve]
+- file: evrim-snapshot-and-monitor-profile.md
+  name: Snapshot and monitor a profile
+  api: openapi/evrim-openapi-original.yml
+  operations: [profiles_snapshots_create, profiles_latest_list, health_snapshot_retrieve, costs_snapshot_retrieve]
+- file: evrim-extract-entities-and-relationships.md
+  name: Extract values and relationships from source content
+  api: openapi/evrim-openapi-original.yml
+  operations: [extract_command_create, extract_relationship_create, extract_value_create]

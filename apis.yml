@@ -1,20 +1,227 @@
 aid: evrim
 name: Evrim
-description: Evrim is a company surfaced as a portfolio company of techstars and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Evrim is the upstream signal layer for U.S. financial institutions, the
+  defense industrial base, and federal agencies. The Evrim REST API ("Data when
+  and how you want it.", v0.5.18) builds structured intelligence profiles from
+  reusable templates and fields, captures point-in-time snapshots, and extracts
+  values and relationships from source content. Every operation authenticates
+  with a Knox-issued API token sent as an HTTP Bearer credential, and an
+  official Stainless-generated Python SDK is published on PyPI.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.evrim.ai/assets/og-image.png
 url: https://raw.githubusercontent.com/api-evangelist/evrim/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - techstars
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: openapi-harvested
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Intelligence
+- Signals
+- Data Enrichment
+- Profiles
+- Entity Resolution
+- Defense
+- Financial Services
+- Government
+apis:
+- aid: evrim:evrim-answers-api
+  name: Evrim answers API
+  description: The answers API from Evrim — 2 operation(s) for answers.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - answers
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-answers-api-openapi.yml
+- aid: evrim:evrim-blank-api
+  name: Evrim blank API
+  description: The blank API from Evrim — 2 operation(s) for blank.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - blank
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-blank-api-openapi.yml
+- aid: evrim:evrim-bulk-api
+  name: Evrim bulk API
+  description: The bulk API from Evrim — 3 operation(s) for bulk.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - bulk
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-bulk-api-openapi.yml
+- aid: evrim:evrim-collections-api
+  name: Evrim collections API
+  description: The collections API from Evrim — 2 operation(s) for collections.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - collections
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-collections-api-openapi.yml
+- aid: evrim:evrim-compose-api
+  name: Evrim compose API
+  description: The compose API from Evrim — 1 operation(s) for compose.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - compose
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-compose-api-openapi.yml
+- aid: evrim:evrim-costs-api
+  name: Evrim costs API
+  description: The costs API from Evrim — 8 operation(s) for costs.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - costs
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-costs-api-openapi.yml
+- aid: evrim:evrim-created-fields-api
+  name: Evrim created-fields API
+  description: The created-fields API from Evrim — 3 operation(s) for created-fields.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - created-fields
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-created-fields-api-openapi.yml
+- aid: evrim:evrim-extract-api
+  name: Evrim extract API
+  description: The extract API from Evrim — 8 operation(s) for extract.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - extract
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-extract-api-openapi.yml
+- aid: evrim:evrim-fields-api
+  name: Evrim fields API
+  description: The fields API from Evrim — 3 operation(s) for fields.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - fields
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-fields-api-openapi.yml
+- aid: evrim:evrim-health-api
+  name: Evrim health API
+  description: The health API from Evrim — 2 operation(s) for health.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - health
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-health-api-openapi.yml
+- aid: evrim:evrim-prod-api
+  name: Evrim prod API
+  description: The prod API from Evrim — 1 operation(s) for prod.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - prod
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-prod-api-openapi.yml
+- aid: evrim:evrim-profiles-api
+  name: Evrim profiles API
+  description: The profiles API from Evrim — 10 operation(s) for profiles.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-profiles-api-openapi.yml
+- aid: evrim:evrim-prompt-templates-api
+  name: Evrim prompt-templates API
+  description: The prompt-templates API from Evrim — 2 operation(s) for prompt-templates.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - prompt-templates
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-prompt-templates-api-openapi.yml
+- aid: evrim:evrim-questions-api
+  name: Evrim questions API
+  description: The questions API from Evrim — 1 operation(s) for questions.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - questions
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-questions-api-openapi.yml
+- aid: evrim:evrim-snapshots-api
+  name: Evrim snapshots API
+  description: The snapshots API from Evrim — 2 operation(s) for snapshots.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-snapshots-api-openapi.yml
+- aid: evrim:evrim-tags-api
+  name: Evrim tags API
+  description: The tags API from Evrim — 4 operation(s) for tags.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - tags
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-tags-api-openapi.yml
+- aid: evrim:evrim-templates-api
+  name: Evrim templates API
+  description: The templates API from Evrim — 3 operation(s) for templates.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - templates
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-templates-api-openapi.yml
+- aid: evrim:evrim-transform-api
+  name: Evrim transform API
+  description: The transform API from Evrim — 1 operation(s) for transform.
+  humanURL: https://docs.evrim.ai
+  baseURL: https://api.evrim.ai
+  tags:
+  - transform
+  properties:
+  - type: OpenAPI
+    url: openapi/evrim-transform-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,4 +229,41 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://evrim.ai/
+  url: https://www.evrim.ai/
+- type: Documentation
+  url: https://docs.evrim.ai
+- type: Blog
+  url: https://www.evrim.ai/blog
+- type: GitHubOrganization
+  url: https://github.com/evrimai
+- type: Authentication
+  url: authentication/evrim-authentication.yml
+- type: DomainSecurity
+  url: security/evrim-domain-security.yml
+- type: Packages
+  url: packages/evrim-packages.yml
+- type: SDKs
+  url: packages/evrim-packages.yml
+- type: MCPServer
+  url: mcp/evrim-mcp.yml
+- type: LLMsTxt
+  url: llms/evrim-llms.txt
+- type: Overlay
+  url: overlays/evrim-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/evrim-conformance.yml
+- type: Lifecycle
+  url: lifecycle/evrim-lifecycle.yml
+- type: Conventions
+  url: conventions/evrim-conventions.yml
+- type: ChangeLog
+  url: changelog/evrim-changelog.yml
+- type: DataModel
+  url: data-model/evrim-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

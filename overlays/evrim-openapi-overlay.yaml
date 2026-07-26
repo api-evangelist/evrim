@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Evrim API
+  version: 1.0.0
+extends: openapi/evrim-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: evrim
+    x-apievangelist-base-url: https://api.evrim.ai
+    x-apievangelist-auth: bearer-knox-token
+    x-apievangelist-sdk-python: https://pypi.org/project/evrim/
+    x-apievangelist-description: >-
+      Evrim is the upstream signal layer for U.S. financial institutions, the
+      defense industrial base, and federal agencies. The API builds structured
+      intelligence Profiles from Templates and Fields, captures Snapshots, and
+      extracts values and relationships from source content.
+- target: $.servers
+  update:
+  - url: https://api.evrim.ai
+    description: Production (added by API Evangelist; the harvested spec omits servers)
