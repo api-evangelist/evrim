@@ -30,7 +30,7 @@ x-tier: enriched
 x-tier-reason: openapi-harvested
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-14'
 tags:
 - Company
 - Intelligence
@@ -262,8 +262,18 @@ common:
   url: data-model/evrim-data-model.yml
 - type: AgentSkill
   url: skills/_index.yml
+- type: Login
+  url: https://handshake.evrim.ai/login
+- type: ToolCrosswalk
+  url: mcp/evrim-tool-crosswalk.yml
+- type: ErrorCatalog
+  url: errors/evrim-problem-types.yml
+- type: RateLimits
+  url: rate-limits/evrim-rate-limits.yml
+- type: Plans
+  url: plans/evrim-plans-pricing.yml
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-14'
+  status: enriched
+  artifacts_added: 5
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
