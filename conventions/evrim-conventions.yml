@@ -1,21 +1,34 @@
-generated: '2026-07-19'
-method: derived
-source: openapi/evrim-openapi-original.yml
+generated: '2026-08-14'
+method: searched
+source: https://github.com/evrimai/python-client/blob/main/README.md
+also_derived_from: openapi/_original/evrim-openapi-original.yml
 notes: >-
-  Cross-cutting request/response semantics for the Evrim API (Django REST
-  Framework + drf-spectacular). Derived from the OpenAPI plus the official
-  Python SDK conventions. No idempotency-key contract is documented, so no
-  Idempotency pointer is emitted.
+  Cross-cutting request/response semantics for the Evrim API. Derived from the
+  published OpenAPI and upgraded this round with runtime semantics SEARCHED from
+  Evrim's own first-party Stainless-generated Python SDK (retries, timeouts, the
+  retry-signalling headers the API emits, the error status table, raw-response
+  access) plus live anonymous probes of api.evrim.ai. NO IDEMPOTENCY-KEY CONTRACT
+  IS DOCUMENTED ANYWHERE, so no Idempotency pointer is emitted.
 authentication:
   style: bearer-token
   header: Authorization
   scheme: Bearer
+  env_var: EVRIM_API_TOKEN
+  client_kwarg: api_token
   detail: Knox API token; see authentication/evrim-authentication.yml
+  challenge: 'www-authenticate: Bearer (observed on 401 from api.evrim.ai)'
+base_url:
+  default: https://api.evrim.ai
+  override_env: EVRIM_BASE_URL
+  source: https://github.com/evrimai/python-client/blob/main/src/evrim/_client.py
 versioning:
   style: uri-path
   current: v0
   base_path: /prod/v0/
   api_version: 0.5.18
+  caveat: >-
+    The /prod/v0/ prefix is what the published spec documents; those paths return
+    404 on the live host today. See lifecycle/evrim-lifecycle.yml.
 pagination:
   style: page-number
   detail: >-
@@ -29,24 +42,86 @@ pagination:
   - next
   - previous
   - results
+  auto_pagination_in_sdk: false
+field_expansion:
+  supported: false
+  detail: No `expand`, `fields` or sparse-fieldset parameter is declared in the spec.
+metadata:
+  supported: false
+  detail: No free-form `metadata` object is declared on any schema.
 idempotency:
   supported: false
-  detail: No Idempotency-Key header or idempotent-write contract is documented.
-error_envelope:
-  format: drf-default
   detail: >-
-    The OpenAPI declares only 2xx/204 responses; error bodies follow the Django
-    REST Framework default shape (a `detail` string for auth/permission errors,
-    or per-field validation maps on 400). Not RFC 9457 problem+json.
+    No Idempotency-Key header, no idempotent-write contract, and no idempotency
+    guidance in the SDK or the spec. Note that the SDK automatically retries 408,
+    409, 429 and >=500 twice by default, which means non-idempotent POSTs
+    (profiles_create, snapshots_create, extract_*_create) can be replayed with no
+    dedupe key to protect them. This is the single highest-value gap on Evrim's
+    runtime contract.
+error_envelope:
+  format: vendor-json
+  shape: '{"detail": "<message>"}'
+  rfc9457: false
+  detail: >-
+    The OpenAPI declares only 2xx/204 responses (zero documented 4xx/5xx). Live
+    error bodies are the FastAPI/Starlette default `detail` envelope. Full catalog
+    in errors/evrim-problem-types.yml.
   observed:
   - status: 401
-    body: '{"detail": "Authentication required..."}'
-    source: live probe of https://api.evrim.ai/docs
+    body: '{"detail": "Not authenticated"}'
+    source: live probe of https://api.evrim.ai/organizations
+  - status: 401
+    body: '{"detail": "Authentication required to access API documentation"}'
+    source: live probe of https://api.evrim.ai/openapi.json
+  - status: 404
+    body: '{"detail": "Not Found"}'
+    source: live probe of https://api.evrim.ai/prod/v0/profiles/
+  - status: 405
+    body: '{"detail": "Method Not Allowed"}'
+    source: live probe of https://api.evrim.ai/mcp
 rate_limiting:
   documented: false
+  exhaustion_status: 429
+  quota_headers: none published
+  retry_headers:
+  - retry-after-ms
+  - retry-after
+  - x-should-retry
+  detail: >-
+    No numeric limit is published. The first-party SDK parses the three headers
+    above off Evrim responses, which is provider-published evidence the API emits
+    them. Full detail in rate-limits/evrim-rate-limits.yml.
+retries:
+  client_default: 2
+  backoff: short exponential
+  retried:
+  - connection errors
+  - 408
+  - 409
+  - 429
+  - '>=500'
+  configurable: per-client (max_retries) and per-request (with_options)
+timeouts:
+  default_seconds: 60
+  granular: httpx.Timeout (connect/read/write)
+  on_timeout: APITimeoutError, retried twice by default
 request_tracing:
   documented: false
+  detail: >-
+    No request-id / correlation-id header is documented or declared. The SDK
+    exposes raw responses via `.with_raw_response.` and `.with_streaming_response.`
+    so a caller can read whatever headers the API does return, but no tracing
+    contract is published.
+logging:
+  env_var: EVRIM_LOG
+  values: [info, debug]
+null_semantics:
+  detail: >-
+    Explicit JSON null and an absent key both deserialize to Python None; the SDK
+    documents `.model_fields_set` as the way to tell them apart.
 cross_links:
   authentication: authentication/evrim-authentication.yml
   lifecycle: lifecycle/evrim-lifecycle.yml
   data_model: data-model/evrim-data-model.yml
+  errors: errors/evrim-problem-types.yml
+  rate_limits: rate-limits/evrim-rate-limits.yml

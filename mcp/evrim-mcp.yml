@@ -1,17 +1,79 @@
-generated: '2026-07-19'
-method: derived
-status: candidate
-source: openapi/evrim-openapi-original.yml
+generated: '2026-08-14'
+method: probed
+status: live-gated
+source: https://api.evrim.ai/mcp
 note: >-
-  No official hosted MCP server for the Evrim REST API was found. (The evrimai
-  org publishes a `signal-mcp` project, but that is an MCP wrapper around
-  signal-cli messaging, not the Evrim API.) The tools below are a CANDIDATE list
-  derived from the marquee Evrim OpenAPI operations, one tool per operationId.
+  Evrim serves a REAL remote MCP endpoint at https://api.evrim.ai/mcp on its own
+  API host. It was NOT guessed: the path appears in Evrim's own product bundle
+  (handshake.evrim.ai/assets/index-DCQUMzPX.js references `/mcp/vnc/${id}`), and
+  the route answers like a Streamable HTTP MCP server — GET returns 405 with
+  `allow: DELETE, POST` (the MCP Streamable HTTP method set), while a JSON-RPC
+  POST of `initialize` / `tools/list` returns 401 with `www-authenticate: Bearer`.
+  A control path (/mcp-nonexistent-xyz) returns 404, so /mcp is a genuinely
+  registered route rather than a catch-all. The live tool list is therefore
+  AUTH-GATED and could not be read anonymously; no tools/list response was
+  obtained and none is asserted here. The `tools:` block below remains a CANDIDATE
+  list derived from the published Evrim OpenAPI operations and is explicitly NOT
+  the server's advertised tool list. Evrim publishes no llms.txt to fall back to.
+  (The evrimai org also publishes a `signal-mcp` project, but that is an MCP
+  wrapper around signal-cli messaging, not the Evrim API.)
+deployment:
+  mode: remote
+  endpoint: https://api.evrim.ai/mcp
+  auth: api-key
+  verified: probed
+  checked: '2026-08-14'
+  note: >-
+    Bearer credential required (www-authenticate: Bearer on an anonymous
+    JSON-RPC POST). Not OAuth: api.evrim.ai serves no
+    /.well-known/oauth-protected-resource, /.well-known/oauth-protected-resource/mcp,
+    /.well-known/oauth-authorization-server or /.well-known/oauth-authorization-server/mcp
+    (all 404), so an MCP client cannot discover an authorization server and must
+    be handed a Knox API token out of band.
+x-evidence:
+  fetched: '2026-08-14'
+  probes:
+  - url: https://api.evrim.ai/mcp
+    method: GET
+    http_status: 405
+    allow: DELETE, POST
+  - url: https://api.evrim.ai/mcp
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"initialize",...}'
+    http_status: 401
+    www_authenticate: Bearer
+  - url: https://api.evrim.ai/mcp
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+  - url: https://api.evrim.ai/mcp/
+    method: GET
+    http_status: 307
+    location: http://api.evrim.ai/mcp
+  - url: https://api.evrim.ai/mcp-nonexistent-xyz
+    method: POST
+    http_status: 404
+    note: control probe — proves /mcp is a registered route, not a catch-all
+  - url: https://api.evrim.ai/sse
+    method: GET
+    http_status: 401
+    note: legacy SSE transport also present and gated
+  - url: https://api.evrim.ai/messages
+    method: GET
+    http_status: 404
 server:
   name: evrim
-  transport: http
+  transport: streamable-http
+  endpoint: https://api.evrim.ai/mcp
   base_url: https://api.evrim.ai
   auth: bearer (Knox API token; EVRIM_API_TOKEN)
+  legacy_transport:
+    sse: https://api.evrim.ai/sse
+    status: present, auth-gated (401)
+tools_status: gated
+tools_source: >-
+  CANDIDATE — derived from openapi/evrim-openapi-original.yml operations, NOT read
+  from the server. Reading the real list requires an authenticated tools/list call.
 tools:
 - name: list_profiles
   description: List intelligence profiles.

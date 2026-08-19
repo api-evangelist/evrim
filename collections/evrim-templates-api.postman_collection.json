@@ -1,0 +1,1063 @@
+{
+  "item": [
+    {
+      "id": "96d4c977-9951-497e-b6e4-4294c4dddf29",
+      "name": "templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d888b8d1-96b9-4c43-9772-868f401a0b4e",
+          "name": "templates list",
+          "request": {
+            "name": "templates list",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "A search term."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9b36d6e8-c1fc-47be-af88-cc4b2307846d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"fields\": [\n        {\n          \"description\": \"string\",\n          \"name\": \"string\",\n          \"rel_template\": 1884,\n          \"type\": \"str\",\n          \"id\": 7216,\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"enum_many\": true,\n          \"sources\": [\n            \"string\",\n            \"string\"\n          ],\n          \"directed\": false,\n          \"keyword_search\": true,\n          \"raw_documents\": false\n        },\n        {\n          \"description\": \"string\",\n          \"name\": \"string\",\n          \"rel_template\": 710,\n          \"type\": \"str\",\n          \"id\": 2639,\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"enum_many\": false,\n          \"sources\": [\n            \"string\",\n            \"string\"\n          ],\n          \"directed\": false,\n          \"keyword_search\": true,\n          \"raw_documents\": false\n        }\n      ],\n      \"id\": 595,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"fields\": [\n        {\n          \"description\": \"string\",\n          \"name\": \"string\",\n          \"rel_template\": 6432,\n          \"type\": \"str\",\n          \"id\": 193,\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"enum_many\": false,\n          \"sources\": [\n            \"string\",\n            \"string\"\n          ],\n          \"directed\": false,\n          \"keyword_search\": true,\n          \"raw_documents\": false\n        },\n        {\n          \"description\": \"string\",\n          \"name\": \"string\",\n          \"rel_template\": 5436,\n          \"type\": \"str\",\n          \"id\": 9773,\n          \"enum_values\": [\n            \"string\",\n            \"string\"\n          ],\n          \"enum_many\": false,\n          \"sources\": [\n            \"string\",\n            \"string\"\n          ],\n          \"directed\": false,\n          \"keyword_search\": true,\n          \"raw_documents\": false\n        }\n      ],\n      \"id\": 8857,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"questions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11d37c74-3a31-41e7-b810-b63a2d0903b9",
+          "name": "templates create",
+          "request": {
+            "name": "templates create",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "questions",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "questions",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a95467e4-0bf9-47f5-be91-65f8dbbabca1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "fields",
+                      "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "fields",
+                      "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "questions",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "questions",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"rel_template\": 2717,\n      \"enum_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enum_many\": \"<boolean>\",\n      \"sources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directed\": false,\n      \"keyword_search\": true,\n      \"raw_documents\": false\n    },\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"rel_template\": 6869,\n      \"enum_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enum_many\": \"<boolean>\",\n      \"sources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directed\": false,\n      \"keyword_search\": true,\n      \"raw_documents\": false\n    }\n  ],\n  \"name\": \"<string>\",\n  \"id\": 4351,\n  \"description\": \"<string>\",\n  \"questions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30be741d-285a-4971-822d-c47d89e4922e",
+          "name": "templates retrieve",
+          "request": {
+            "name": "templates retrieve",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "templates",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8eb1e43d-c0e7-4753-a7e8-41770364d637",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "templates",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"rel_template\": 2717,\n      \"enum_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enum_many\": \"<boolean>\",\n      \"sources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directed\": false,\n      \"keyword_search\": true,\n      \"raw_documents\": false\n    },\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"rel_template\": 6869,\n      \"enum_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enum_many\": \"<boolean>\",\n      \"sources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directed\": false,\n      \"keyword_search\": true,\n      \"raw_documents\": false\n    }\n  ],\n  \"name\": \"<string>\",\n  \"id\": 4351,\n  \"description\": \"<string>\",\n  \"questions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "471bb0b3-cdb0-4ef0-990b-7d30f06ffbcb",
+          "name": "templates update",
+          "request": {
+            "name": "templates update",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "templates",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "questions",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "questions",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eaca6ee7-6174-455a-99a6-7f2a6829d400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "templates",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "fields",
+                      "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "fields",
+                      "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "questions",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "questions",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"rel_template\": 2717,\n      \"enum_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enum_many\": \"<boolean>\",\n      \"sources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directed\": false,\n      \"keyword_search\": true,\n      \"raw_documents\": false\n    },\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"rel_template\": 6869,\n      \"enum_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enum_many\": \"<boolean>\",\n      \"sources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directed\": false,\n      \"keyword_search\": true,\n      \"raw_documents\": false\n    }\n  ],\n  \"name\": \"<string>\",\n  \"id\": 4351,\n  \"description\": \"<string>\",\n  \"questions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a5af8b1-90ec-4622-b6ef-21e150889a3c",
+          "name": "templates partial update",
+          "request": {
+            "name": "templates partial update",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "templates",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}"
+                },
+                {
+                  "disabled": false,
+                  "key": "questions",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "questions",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9528e590-6f61-47ba-a0f4-6dec2843b9b6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "templates",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "fields",
+                      "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "fields",
+                      "value": "{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "questions",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "questions",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fields\": [\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"rel_template\": 2717,\n      \"enum_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enum_many\": \"<boolean>\",\n      \"sources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directed\": false,\n      \"keyword_search\": true,\n      \"raw_documents\": false\n    },\n    {\n      \"description\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"rel_template\": 6869,\n      \"enum_values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enum_many\": \"<boolean>\",\n      \"sources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"directed\": false,\n      \"keyword_search\": true,\n      \"raw_documents\": false\n    }\n  ],\n  \"name\": \"<string>\",\n  \"id\": 4351,\n  \"description\": \"<string>\",\n  \"questions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c92a13b-2370-42c3-a05f-fe120b4a7304",
+          "name": "templates destroy",
+          "request": {
+            "name": "templates destroy",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "templates",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this template."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f75f228d-30f8-43c0-bbb6-e58c197523a7",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "templates",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6beba4c-d9e8-4746-9a19-31063dda799f",
+          "name": "templates profiles list",
+          "request": {
+            "name": "templates profiles list",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "templates",
+                ":template_id",
+                "profiles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_answers",
+                  "value": "true",
+                  "description": "Include answers in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_fields",
+                  "value": "true",
+                  "description": "Include fields in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_snapshots",
+                  "value": "true",
+                  "description": "Include snapshots in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "to_records",
+                  "value": "false",
+                  "description": "Transform the snapshot fields into a list of records"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "template_id",
+                  "description": "(Required) Template id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "982a9380-ce00-46c0-896b-b7e0001a7cef",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "templates",
+                    ":template_id",
+                    "profiles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_answers",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_fields",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include_snapshots",
+                      "value": "true"
+                    },
+                    {
+                      "key": "to_records",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "template_id",
+                      "description": "(Required) Template id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7100,\n    \"snapshots\": [\n      {\n        \"answers\": [\n          {\n            \"answer\": {},\n            \"id\": 5763,\n            \"question\": \"string\",\n            \"source\": \"string\"\n          },\n          {\n            \"answer\": {},\n            \"id\": 7122,\n            \"question\": \"string\",\n            \"source\": \"string\"\n          }\n        ],\n        \"fields\": [\n          {\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": 4034,\n            \"status\": \"s\",\n            \"value\": {},\n            \"keyword_search\": false,\n            \"raw_documents\": false\n          },\n          {\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": 1758,\n            \"status\": \"s\",\n            \"value\": {},\n            \"keyword_search\": true,\n            \"raw_documents\": false\n          }\n        ],\n        \"id\": 9764,\n        \"reports\": [\n          {\n            \"id\": 115,\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"report\": {}\n          },\n          {\n            \"id\": 3536,\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"report\": {}\n          }\n        ],\n        \"status\": \"s\"\n      },\n      {\n        \"answers\": [\n          {\n            \"answer\": {},\n            \"id\": 4107,\n            \"question\": \"string\",\n            \"source\": \"string\"\n          },\n          {\n            \"answer\": {},\n            \"id\": 1511,\n            \"question\": \"string\",\n            \"source\": \"string\"\n          }\n        ],\n        \"fields\": [\n          {\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": 4067,\n            \"status\": \"s\",\n            \"value\": {},\n            \"keyword_search\": false,\n            \"raw_documents\": true\n          },\n          {\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": 6206,\n            \"status\": \"s\",\n            \"value\": {},\n            \"keyword_search\": true,\n            \"raw_documents\": false\n          }\n        ],\n        \"id\": 500,\n        \"reports\": [\n          {\n            \"id\": 2364,\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"report\": {}\n          },\n          {\n            \"id\": 1718,\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"report\": {}\n          }\n        ],\n        \"status\": \"s\"\n      }\n    ],\n    \"specification\": \"string\",\n    \"template\": {\n      \"fields\": [\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"rel_template\": 9897,\n          \"enum_values\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"enum_many\": \"<boolean>\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"directed\": false,\n          \"keyword_search\": true,\n          \"raw_documents\": false\n        },\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"rel_template\": 5985,\n          \"enum_values\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"enum_many\": \"<boolean>\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"directed\": false,\n          \"keyword_search\": true,\n          \"raw_documents\": false\n        }\n      ],\n      \"name\": \"<string>\",\n      \"id\": 6044,\n      \"description\": \"<string>\",\n      \"questions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"tags\": [\n      {\n        \"id\": 4617,\n        \"name\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"id\": 8002,\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": 5399,\n    \"snapshots\": [\n      {\n        \"answers\": [\n          {\n            \"answer\": {},\n            \"id\": 1443,\n            \"question\": \"string\",\n            \"source\": \"string\"\n          },\n          {\n            \"answer\": {},\n            \"id\": 6468,\n            \"question\": \"string\",\n            \"source\": \"string\"\n          }\n        ],\n        \"fields\": [\n          {\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": 3560,\n            \"status\": \"s\",\n            \"value\": {},\n            \"keyword_search\": true,\n            \"raw_documents\": true\n          },\n          {\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": 9076,\n            \"status\": \"s\",\n            \"value\": {},\n            \"keyword_search\": false,\n            \"raw_documents\": true\n          }\n        ],\n        \"id\": 5986,\n        \"reports\": [\n          {\n            \"id\": 8216,\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"report\": {}\n          },\n          {\n            \"id\": 3841,\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"report\": {}\n          }\n        ],\n        \"status\": \"s\"\n      },\n      {\n        \"answers\": [\n          {\n            \"answer\": {},\n            \"id\": 2292,\n            \"question\": \"string\",\n            \"source\": \"string\"\n          },\n          {\n            \"answer\": {},\n            \"id\": 4118,\n            \"question\": \"string\",\n            \"source\": \"string\"\n          }\n        ],\n        \"fields\": [\n          {\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": 6906,\n            \"status\": \"s\",\n            \"value\": {},\n            \"keyword_search\": true,\n            \"raw_documents\": false\n          },\n          {\n            \"field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": 7972,\n            \"status\": \"s\",\n            \"value\": {},\n            \"keyword_search\": false,\n            \"raw_documents\": true\n          }\n        ],\n        \"id\": 1184,\n        \"reports\": [\n          {\n            \"id\": 4706,\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"report\": {}\n          },\n          {\n            \"id\": 2190,\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"report\": {}\n          }\n        ],\n        \"status\": \"s\"\n      }\n    ],\n    \"specification\": \"string\",\n    \"template\": {\n      \"fields\": [\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"rel_template\": 6711,\n          \"enum_values\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"enum_many\": \"<boolean>\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"directed\": false,\n          \"keyword_search\": true,\n          \"raw_documents\": false\n        },\n        {\n          \"description\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"rel_template\": 5432,\n          \"enum_values\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"enum_many\": \"<boolean>\",\n          \"sources\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"directed\": false,\n          \"keyword_search\": true,\n          \"raw_documents\": false\n        }\n      ],\n      \"name\": \"<string>\",\n      \"id\": 577,\n      \"description\": \"<string>\",\n      \"questions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"tags\": [\n      {\n        \"id\": 7770,\n        \"name\": \"string\",\n        \"description\": \"string\"\n      },\n      {\n        \"id\": 6535,\n        \"name\": \"string\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "91327423-66ee-42cc-9bc4-9bd77703417b",
+    "name": "Evrim answers templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Data when and how you want it.",
+      "type": "text/plain"
+    }
+  }
+}

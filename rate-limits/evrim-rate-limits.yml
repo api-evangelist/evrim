@@ -1,0 +1,71 @@
+generated: '2026-08-14'
+method: searched
+source: https://github.com/evrimai/python-client/blob/main/README.md#retries
+limit_count: 0
+limits: []
+note: >-
+  NO NUMERIC RATE LIMIT IS PUBLISHED. Evrim documents no quota, window, burst or
+  per-key ceiling anywhere a member of the public can reach: the published
+  OpenAPI (v0.5.18, 91 operations) declares no 429 response and no rate-limit
+  headers, the marketing site has no pricing or limits page, and the developer
+  documentation host (docs.evrim.ai) is unreachable — its HTTPS listener fails
+  the TLS handshake and plain HTTP returns Cloudflare error 1001. What IS
+  established, from Evrim's own first-party Stainless-generated Python SDK, is
+  that the API enforces limits at runtime and signals them the standard way: a
+  429 maps to `evrim.RateLimitError` and the client backs off. The exhaustion
+  status and the retry signalling below are real; the numbers are simply not
+  disclosed. Recorded as limit_count 0 rather than omitted.
+exhaustion:
+  status: 429
+  error_type: RateLimitError
+  envelope: '{"detail": "..."}'
+  source: sdk-error-table
+response_headers:
+  documented_by_provider: false
+  honoured_by_first_party_sdk:
+  - name: retry-after-ms
+    meaning: >-
+      Non-standard millisecond precision back-off; the SDK reads this FIRST,
+      before `retry-after`.
+  - name: retry-after
+    meaning: >-
+      Seconds (non-integer floats tolerated) or an HTTP-date. The SDK only honours
+      a parsed value in the range 0 < n <= 60; anything larger falls back to its
+      own exponential backoff.
+  - name: x-should-retry
+    meaning: >-
+      Explicit server override — `true` forces a retry, `false` suppresses one,
+      regardless of status code.
+  note: >-
+    These are the headers Evrim's own SDK parses off Evrim responses
+    (src/evrim/_base_client.py::_parse_retry_after_header and the
+    x-should-retry check), which is provider-published evidence that the API emits
+    them. No X-RateLimit-* / RateLimit-* quota-disclosure header is read or
+    documented, so a client cannot see remaining quota — only that it has run out.
+client_retry_policy:
+  max_retries_default: 2
+  backoff: short exponential
+  retried_conditions:
+  - connection errors
+  - 408 Request Timeout
+  - 409 Conflict
+  - 429 Too Many Requests
+  - '>= 500'
+  request_timeout_default_seconds: 60
+  configurable: max_retries / timeout, per-client or per-request
+  source: https://github.com/evrimai/python-client/blob/main/README.md#retries
+evidence:
+- url: https://github.com/evrimai/python-client/blob/main/README.md
+  status: 200
+- url: https://raw.githubusercontent.com/evrimai/python-client/main/src/evrim/_base_client.py
+  status: 200
+- url: https://docs.evrim.ai/
+  status: 000
+  note: TLS handshake failure (alert 40, no peer certificate) — docs unreachable
+- url: http://docs.evrim.ai/
+  status: 409
+  note: Cloudflare error 1001
+checked: '2026-08-14'
+cross_links:
+  errors: errors/evrim-problem-types.yml
+  conventions: conventions/evrim-conventions.yml

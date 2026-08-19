@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Evrim answers compose API",
+    "version": "0.5.18"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "compose",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "compose_profile_snapshot_create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/prod/v0/compose/profile/snapshot/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,12 +1,13 @@
-generated: '2026-07-19'
-method: derived
-source: openapi/evrim-openapi-original.yml
+generated: '2026-08-14'
+method: probed
+source: openapi/_original/evrim-openapi-original.yml + live probes of Evrim hosts
 versioning:
   scheme: uri-path
   current: v0
   base_path: /prod/v0/
   api_version: 0.5.18
   docs: https://docs.evrim.ai
+  docs_reachable: false
 deprecation:
   policy_url: null
   sunset_header: false
@@ -14,9 +15,76 @@ deprecation:
 sla:
   url: null
 status_page: null
+status_page_probes:
+- url: https://status.evrim.ai/
+  status: 000
+  note: does not resolve / no listener
 deprecated_operations: []
+x-probed-decay:
+  checked: '2026-08-14'
+  findings:
+  - id: docs-host-tls-broken
+    severity: high
+    detail: >-
+      docs.evrim.ai — the humanURL on all 18 Evrim API entries and the
+      documentation URL Evrim's own SDK README points readers to — is UNREACHABLE.
+      DNS resolves to 5cc00350f5-hosting.gitbook.io (Cloudflare), but the HTTPS
+      listener aborts the handshake with TLS alert 40 and presents no peer
+      certificate, and plain HTTP returns Cloudflare error 1001 (HTTP 409). This is
+      the classic signature of a GitBook custom domain whose certificate was never
+      provisioned or has lapsed. No documentation page could be read this round.
+    evidence:
+    - url: https://docs.evrim.ai/
+      status: 000
+    - url: http://docs.evrim.ai/
+      status: 409
+  - id: published-spec-paths-absent-on-live-host
+    severity: high
+    detail: >-
+      The published OpenAPI describes a Django REST Framework surface under
+      /prod/v0/ (drf-spectacular, /prod/schema/). The live api.evrim.ai host now
+      reports `server: uvicorn` (FastAPI/Starlette) and returns 404
+      {"detail":"Not Found"} — not 401 — for /prod/, /prod/v0/, /prod/v0/profiles/,
+      /prod/v0/answers/ and /prod/schema/, with or without an Authorization
+      header. Routes that DO exist on the live host answer 401 "Not authenticated"
+      (/chat/sessions, /organizations, /sources, /mcp, /sse), so the 404s indicate
+      the documented routes are no longer mounted rather than merely gated. The
+      published contract appears to describe a superseded generation of the API.
+    evidence:
+    - url: https://api.evrim.ai/prod/v0/profiles/
+      status: 404
+    - url: https://api.evrim.ai/prod/schema/
+      status: 404
+    - url: https://api.evrim.ai/organizations
+      status: 401
+    - url: https://api.evrim.ai/health
+      status: 200
+  - id: current-spec-not-published
+    severity: medium
+    detail: >-
+      The live host exposes FastAPI's own documentation routes, but both are
+      closed: GET /openapi.json and GET /docs each return 401
+      {"detail":"Authentication required to access API documentation"}. The current
+      machine-readable contract therefore exists but is not public. The only public
+      copy of any Evrim spec is the Stainless-hosted v0.5.18 document referenced by
+      the SDK's .stats.yml.
+    evidence:
+    - url: https://api.evrim.ai/openapi.json
+      status: 401
+    - url: https://api.evrim.ai/docs
+      status: 401
+  - id: sdk-release-stale
+    severity: medium
+    detail: >-
+      The only first-party SDK (PyPI `evrim`) last released 2.8.0 on 2025-03-27 and
+      pins 85 configured endpoints against a 91-operation spec. See
+      packages/evrim-packages.yml.
 notes: >-
-  The Evrim API is at an unversioned-in-path v0 stage (base /prod/v0/). No
-  status page, SLA, or deprecation policy is published, so no StatusPage or
-  Deprecation pointer is emitted. The official Python SDK maintains a dated
-  release changelog (see changelog/evrim-changelog.yml).
+  The Evrim API is at an unversioned-in-path v0 stage (base /prod/v0/). No status
+  page, SLA, or deprecation policy is published, so no StatusPage or Deprecation
+  pointer is emitted. The official Python SDK maintains a dated release changelog
+  (see changelog/evrim-changelog.yml). This round's probes found real lifecycle
+  decay on the public surface: the documentation host does not serve TLS, the
+  documented v0 routes 404 on the live host, and the current spec is behind auth.
+  All of it is fixable by Evrim and none of it is asserted beyond the recorded
+  status codes.

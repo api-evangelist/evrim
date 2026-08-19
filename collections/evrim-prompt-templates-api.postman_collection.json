@@ -1,0 +1,374 @@
+{
+  "item": [
+    {
+      "id": "88f9aaf8-4c36-41ff-89a0-6d656171328f",
+      "name": "prompt-templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "690c6986-3ae8-4e47-928c-05285108946b",
+          "name": "prompt templates list",
+          "request": {
+            "name": "prompt templates list",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "prompt-templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "83331948-a5b5-4b03-945e-5307a6220df4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "prompt-templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"id\": 837,\n      \"prompt\": \"string\",\n      \"template\": {\n        \"fields\": [\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_values\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_many\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"directed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"keyword_search\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"raw_documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_values\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_many\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"directed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"keyword_search\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"raw_documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": 8029,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"questions\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"status\": \"C\"\n    },\n    {\n      \"id\": 8029,\n      \"prompt\": \"string\",\n      \"template\": {\n        \"fields\": [\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_values\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_many\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"directed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"keyword_search\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"raw_documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_values\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_many\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"directed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"keyword_search\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"raw_documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": 876,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"questions\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"status\": \"W\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d63c1ab8-95d6-44d8-9f80-ddc5b520f1ba",
+          "name": "prompt templates create",
+          "request": {
+            "name": "prompt templates create",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "prompt-templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "prompt",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "78e2d886-22c5-4a86-b467-77a8ef6be0e6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "prompt-templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"prompt\": \"<string>\",\n  \"id\": 4861,\n  \"status\": \"<string>\",\n  \"template\": {\n    \"fields\": [\n      {\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"rel_template\": 7941,\n        \"type\": \"str\",\n        \"id\": 7654,\n        \"enum_values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enum_many\": false,\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directed\": false,\n        \"keyword_search\": true,\n        \"raw_documents\": false\n      },\n      {\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"rel_template\": 5072,\n        \"type\": \"str\",\n        \"id\": 508,\n        \"enum_values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enum_many\": false,\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directed\": false,\n        \"keyword_search\": true,\n        \"raw_documents\": false\n      }\n    ],\n    \"id\": 4383,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"questions\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11bc6a09-a8bd-4d19-ab96-a53d4b1af3bd",
+          "name": "prompt templates retrieve",
+          "request": {
+            "name": "prompt templates retrieve",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "prompt-templates",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this prompt template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "af6ab5ce-18cf-43e3-a606-33f383621033",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "prompt-templates",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this prompt template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"prompt\": \"<string>\",\n  \"id\": 9714,\n  \"status\": \"<string>\",\n  \"template\": {\n    \"fields\": [\n      {\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"rel_template\": 7629,\n        \"type\": \"str\",\n        \"id\": 9615,\n        \"enum_values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enum_many\": false,\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directed\": false,\n        \"keyword_search\": true,\n        \"raw_documents\": false\n      },\n      {\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"rel_template\": 8730,\n        \"type\": \"str\",\n        \"id\": 1102,\n        \"enum_values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enum_many\": true,\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directed\": false,\n        \"keyword_search\": true,\n        \"raw_documents\": false\n      }\n    ],\n    \"id\": 294,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"questions\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1967c019-4f17-4b45-8fcd-670f8031d1ec",
+    "name": "Evrim answers prompt-templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Data when and how you want it.",
+      "type": "text/plain"
+    }
+  }
+}

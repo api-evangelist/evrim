@@ -1,0 +1,41 @@
+generated: '2026-08-14'
+method: searched
+source: https://www.evrim.ai/
+plan_count: 0
+currency: null
+plans: []
+note: >-
+  EVRIM PUBLISHES NO PRICING OF ANY KIND. www.evrim.ai is a client-rendered React
+  SPA and its router declares exactly four routes — "/", "/blog", "/blog/:slug"
+  and "/careers" (read from the site's own bundle,
+  https://www.evrim.ai/static/js/main.09b5f026.js). There is no /pricing, /plans
+  or /contact route to gate, and no price, tier, quota or overage figure appears
+  anywhere on the public surface. The only conversion paths on the site are a
+  JotForm submission (submit.jotform.com/submit/261476418666064) and a Loops
+  newsletter signup; the product itself sits behind a login at
+  handshake.evrim.ai/login. Access is therefore sales-gated / enterprise
+  "contact us" with no published commercial terms — recorded as plan_count 0,
+  not as an unchecked artifact.
+sales_gate:
+  contact_form: https://submit.jotform.com/submit/261476418666064
+  product_login: https://handshake.evrim.ai/login
+metering_signal:
+  note: >-
+    Evrim does meter usage internally — the published OpenAPI exposes a `costs`
+    tag with 8 operations (/prod/v0/costs/answer/, /costs/average/answer/,
+    /costs/average/field/, /costs/average/field/type/, /costs/created-field/,
+    /costs/snapshot/{id}/), i.e. per-answer, per-field and per-snapshot cost
+    reporting. None of it is priced publicly; the unit economics are visible only
+    to an authenticated customer.
+  source: openapi/evrim-costs-api-openapi.yml
+evidence:
+- url: https://www.evrim.ai/
+  status: 200
+  note: SPA shell; router declares only /, /blog, /blog/:slug, /careers
+- url: https://www.evrim.ai/static/js/main.09b5f026.js
+  status: 200
+  note: application bundle read for the route table
+- url: https://docs.evrim.ai/
+  status: 000
+  note: TLS handshake failure — documentation host unreachable, see lifecycle artifact
+checked: '2026-08-14'

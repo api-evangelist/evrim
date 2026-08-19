@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Evrim answers transform API",
+    "version": "0.5.18"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "transform",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "transform_profile_latest_retrieve",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/prod/v0/transform/profile/:profile_id/latest/",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Transform a profile snapshot into a tabular format"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

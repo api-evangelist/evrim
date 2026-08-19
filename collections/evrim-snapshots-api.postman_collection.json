@@ -1,0 +1,248 @@
+{
+  "item": [
+    {
+      "id": "331b99ec-fcda-4289-b57e-3062c7d4fd4b",
+      "name": "snapshots",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58d04d66-4d60-4201-8b84-13acca3ce690",
+          "name": "snapshots list",
+          "request": {
+            "name": "snapshots list",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "snapshots",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3dfb4caa-6b73-48e5-a580-5d2999382b7d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "snapshots",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"answers\": [\n        {\n          \"answer\": {},\n          \"id\": 8089,\n          \"question\": \"string\",\n          \"source\": \"string\"\n        },\n        {\n          \"answer\": {},\n          \"id\": 2796,\n          \"question\": \"string\",\n          \"source\": \"string\"\n        }\n      ],\n      \"fields\": [\n        {\n          \"field\": {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_values\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_many\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"directed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"keyword_search\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"raw_documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": 4206,\n          \"status\": \"s\",\n          \"value\": {},\n          \"keyword_search\": true,\n          \"raw_documents\": false\n        },\n        {\n          \"field\": {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_values\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_many\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"directed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"keyword_search\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"raw_documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": 8316,\n          \"status\": \"s\",\n          \"value\": {},\n          \"keyword_search\": false,\n          \"raw_documents\": true\n        }\n      ],\n      \"id\": 8926,\n      \"reports\": [\n        {\n          \"id\": 6617,\n          \"outline\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"perspective\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"report\": {}\n        },\n        {\n          \"id\": 1963,\n          \"outline\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"perspective\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"report\": {}\n        }\n      ],\n      \"status\": \"s\"\n    },\n    {\n      \"answers\": [\n        {\n          \"answer\": {},\n          \"id\": 292,\n          \"question\": \"string\",\n          \"source\": \"string\"\n        },\n        {\n          \"answer\": {},\n          \"id\": 5630,\n          \"question\": \"string\",\n          \"source\": \"string\"\n        }\n      ],\n      \"fields\": [\n        {\n          \"field\": {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_values\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_many\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"directed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"keyword_search\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"raw_documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": 6080,\n          \"status\": \"s\",\n          \"value\": {},\n          \"keyword_search\": false,\n          \"raw_documents\": true\n        },\n        {\n          \"field\": {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_values\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum_many\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sources\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"directed\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"keyword_search\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"raw_documents\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": 6969,\n          \"status\": \"s\",\n          \"value\": {},\n          \"keyword_search\": false,\n          \"raw_documents\": false\n        }\n      ],\n      \"id\": 2784,\n      \"reports\": [\n        {\n          \"id\": 1836,\n          \"outline\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"perspective\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"report\": {}\n        },\n        {\n          \"id\": 9756,\n          \"outline\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"perspective\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"outline\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"report\": {}\n        }\n      ],\n      \"status\": \"s\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9879c53-85ac-4de9-b009-22d9b2975ee4",
+          "name": "snapshots retrieve",
+          "request": {
+            "name": "snapshots retrieve",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "snapshots",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this snapshot."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "04cd0f4f-6ea5-455c-aa1a-321f9221a5db",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "snapshots",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this snapshot."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"answers\": [\n    {\n      \"answer\": {},\n      \"id\": 9122,\n      \"question\": \"string\",\n      \"source\": \"string\"\n    },\n    {\n      \"answer\": {},\n      \"id\": 5407,\n      \"question\": \"string\",\n      \"source\": \"string\"\n    }\n  ],\n  \"fields\": [\n    {\n      \"field\": {\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"rel_template\": 5399,\n        \"type\": \"str\",\n        \"id\": 4194,\n        \"enum_values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enum_many\": true,\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directed\": false,\n        \"keyword_search\": true,\n        \"raw_documents\": false\n      },\n      \"id\": 7969,\n      \"status\": \"s\",\n      \"value\": {},\n      \"keyword_search\": false,\n      \"raw_documents\": true\n    },\n    {\n      \"field\": {\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"rel_template\": 2823,\n        \"type\": \"str\",\n        \"id\": 7211,\n        \"enum_values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enum_many\": true,\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directed\": false,\n        \"keyword_search\": true,\n        \"raw_documents\": false\n      },\n      \"id\": 669,\n      \"status\": \"s\",\n      \"value\": {},\n      \"keyword_search\": false,\n      \"raw_documents\": true\n    }\n  ],\n  \"id\": 1460,\n  \"reports\": [\n    {\n      \"id\": 8344,\n      \"outline\": {\n        \"id\": 1982,\n        \"perspective\": \"string\",\n        \"outline\": {}\n      },\n      \"report\": {}\n    },\n    {\n      \"id\": 7334,\n      \"outline\": {\n        \"id\": 201,\n        \"perspective\": \"string\",\n        \"outline\": {}\n      },\n      \"report\": {}\n    }\n  ],\n  \"status\": \"s\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1fa9266d-ae83-4adf-a61e-daee4cdba00c",
+    "name": "Evrim answers snapshots API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Data when and how you want it.",
+      "type": "text/plain"
+    }
+  }
+}

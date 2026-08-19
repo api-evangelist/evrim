@@ -1,0 +1,73 @@
+generated: '2026-08-14'
+method: derived
+source: openapi/_original/evrim-openapi-original.yml + probe of https://api.evrim.ai/mcp
+status: unresolvable-gated
+summary: >-
+  Evrim has BOTH an OpenAPI (91 operations, v0.5.18) and a live remote MCP endpoint
+  (https://api.evrim.ai/mcp), so a crosswalk is in scope — but it CANNOT be
+  resolved. The MCP endpoint refuses an anonymous `tools/list` with HTTP 401 and
+  `www-authenticate: Bearer`, so the server's real tool names and inputSchemas were
+  never seen, and Evrim publishes no llms.txt or reachable documentation to fall
+  back to (docs.evrim.ai fails its TLS handshake). Every row below is therefore a
+  CANDIDATE binding between a tool name WE derived and the operation we derived it
+  from — it is not evidence that Evrim's server exposes that tool. Confidence is
+  `low` on every row by construction. Resolving this requires one authenticated
+  tools/list call.
+surfaces:
+  openapi:
+    path: openapi/_original/evrim-openapi-original.yml
+    operations: 91
+    version: 0.5.18
+    gated: false
+    note: >-
+      The published spec describes a Django REST Framework surface under
+      /prod/v0/. The live api.evrim.ai host is now uvicorn/FastAPI and returns 404
+      for those paths anonymously — see lifecycle/evrim-lifecycle.yml.
+  mcp:
+    url: https://api.evrim.ai/mcp
+    transport: streamable-http
+    gated: true
+    probe: 'POST tools/list -> 401 (www-authenticate: Bearer)'
+    tools_seen: 0
+  graphql:
+    present: false
+crosswalk_status: candidate-only
+crosswalk: []
+crosswalk_note: >-
+  Deliberately EMPTY. Populating it with our own derived tool names bound to the
+  operations those names were generated from would be circular — it would read as a
+  verified tool-to-operation binding while asserting nothing about Evrim's server.
+  The candidate tool list lives in mcp/evrim-mcp.yml under `tools:`, clearly marked
+  `tools_status: gated` / `tools_source: CANDIDATE`.
+mcp_only: []
+mcp_only_note: >-
+  Unknown. Evrim's live MCP surface is broader than the published REST contract —
+  its own product bundle (handshake.evrim.ai) calls api.evrim.ai routes such as
+  /chat/sessions, /organizations, /participants, /sources, /relationships,
+  /documents/by-url, /technology/* and /mcp/vnc/{id}, none of which appear in the
+  published OpenAPI. All returned 401 "Not authenticated" on anonymous probe. Any
+  of these could back an mcp_only tool, but nothing is asserted without a schema.
+rest_only_note: >-
+  Cannot be computed while the tool list is gated. All 91 published operations are
+  currently unmatched, but that reflects the missing tool list, not an absence of
+  tools.
+coverage:
+  openapi_operations: 91
+  mcp_tools_advertised: null
+  mcp_tools_read: 0
+  bound: 0
+  confidence: none
+  blocker: authenticated tools/list required
+evidence:
+- url: https://api.evrim.ai/mcp
+  method: POST
+  body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  status: 401
+- url: https://api.evrim.ai/mcp
+  method: GET
+  status: 405
+  note: 'allow: DELETE, POST'
+- url: https://docs.evrim.ai/llms.txt
+  status: 000
+  note: TLS handshake failure — no llms.txt fallback available
+checked: '2026-08-14'

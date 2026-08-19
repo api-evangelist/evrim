@@ -1,10 +1,12 @@
-generated: '2026-07-19'
+generated: '2026-08-14'
 method: searched
-source: https://pypi.org/project/evrim/
+source: https://pypi.org/pypi/evrim/json
 packages:
 - language: python
   registry: pypi
   name: evrim
+  version: 2.8.0
+  published: '2025-03-27'
   url: https://pypi.org/project/evrim/
   install: pip install evrim
   official: true
@@ -13,16 +15,69 @@ packages:
     The official Python library for the Evrim REST API (Python 3.8+),
     Stainless-generated, with synchronous and asynchronous httpx clients and
     typed request params / Pydantic response models.
+  note: >-
+    Version and date read from the PyPI JSON metadata endpoint on 2026-08-14.
+    DECAY SIGNAL: 2.8.0 is the latest release and it shipped 2025-03-27 — nearly
+    seventeen months old at time of check. The generator manifest
+    (github.com/evrimai/python-client/.stats.yml) pins configured_endpoints: 85
+    against a Stainless-hosted spec, while the OpenAPI in this repo carries 91
+    operations, so the published SDK covers fewer operations than the published
+    contract. The repository itself was last pushed 2025-08-02.
+  generator: stainless
+  configured_endpoints: 85
+  spec_source: >-
+    https://storage.googleapis.com/stainless-sdk-openapi-specs/evrim%2Fevrim-bfa1475f723b89cde7b4d5db25ad11a54cb2f28cbfaae95e3fc058d63dba9690.yml
+registries_checked:
+- registry: pypi
+  package: evrim
+  found: true
+- registry: npm
+  package: evrim
+  found: false
+  status: 404
+- registry: npm
+  package: '@evrim/sdk'
+  found: false
+  status: 404
+- registry: npm
+  query: evrim (search)
+  found: false
+  note: only unrelated third-party packages (evrim-haber, n11client-nodejs)
+- registry: maven-central
+  found: false
+- registry: nuget
+  found: false
+- registry: rubygems
+  found: false
+- registry: crates.io
+  found: false
+- registry: pkg.go.dev
+  found: false
 related_first_party:
 - note: >-
     The evrimai GitHub org also publishes official Python clients for two
     adjacent products (distinct base APIs, not the Evrim API surface): fleet-client
-    (the "fleet" API) and cartography-client (the "cartography" API). Listed for
-    completeness; not counted as Evrim API SDKs.
+    (the "fleet" API, base https://fleet.evrim.ai/fleet/ — a host referenced by
+    Evrim's own handshake.evrim.ai product bundle) and cartography-client (the
+    "cartography" API). Neither is published to PyPI under a discoverable name;
+    both are repository-only. Listed for completeness; not counted as Evrim API SDKs.
   packages:
   - name: fleet-client
     repository: https://github.com/evrimai/fleet-client
     language: python
+    registry: null
+    version: null
+    published: null
+    note: >-
+      Checked — no PyPI/npm distribution found; consumable only by cloning the
+      repository, so there is no registry metadata endpoint to date it. Repo last
+      pushed 2026-03-27.
   - name: cartography-client
     repository: https://github.com/evrimai/cartography-client
     language: python
+    registry: null
+    version: null
+    published: null
+    note: >-
+      Checked — no PyPI/npm distribution found; repository-only. Repo last pushed
+      2026-03-27.

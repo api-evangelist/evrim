@@ -1,0 +1,121 @@
+generated: '2026-08-14'
+method: searched
+source: https://github.com/evrimai/python-client/blob/main/README.md#handling-errors
+format: vendor-json
+media_type: application/json
+envelope:
+  field: detail
+  shape: '{"detail": "<human readable message>"}'
+  evidence: >-
+    Observed verbatim on live anonymous probes of api.evrim.ai —
+    {"detail":"Not Found"} (404), {"detail":"Not authenticated"} (401),
+    {"detail":"Method Not Allowed"} (405), and
+    {"detail":"Authentication required to access API documentation"} on
+    /openapi.json and /docs. This is the FastAPI/Starlette default error envelope.
+  rfc9457: false
+  note: >-
+    No application/problem+json response is produced anywhere on the surface; there
+    is no `type`, `title`, `status` or `instance` member, so this is NOT RFC 9457
+    Problem Details.
+spec_gap:
+  detail: >-
+    The published Evrim OpenAPI (openapi/_original/evrim-openapi-original.yml,
+    v0.5.18, 91 operations) declares NO error responses at all — every operation
+    documents only 200/201/204 (60 x 200, 25 x 201, 6 x 204, zero 4xx/5xx). The
+    error contract below therefore could not be derived from the spec; it was
+    SEARCHED from Evrim's own first-party Stainless-generated Python SDK, which
+    publishes the status-code-to-exception mapping the API actually returns, and
+    confirmed against live anonymous responses.
+  documented_error_responses: 0
+problem_types:
+- status: 400
+  name: BadRequestError
+  title: Bad request
+  meaning: The request was malformed or failed validation.
+  remediation: Correct the request body or query parameters and retry.
+  retryable: false
+  source: sdk-error-table
+- status: 401
+  name: AuthenticationError
+  title: Not authenticated
+  meaning: >-
+    Missing or invalid Knox API token. Observed live as
+    {"detail":"Not authenticated"} with `www-authenticate: Bearer`.
+  remediation: >-
+    Send `Authorization: Bearer <token>`; the SDK reads it from EVRIM_API_TOKEN.
+  retryable: false
+  source: sdk-error-table + live probe
+- status: 403
+  name: PermissionDeniedError
+  title: Permission denied
+  meaning: The credential is valid but not authorized for this resource.
+  remediation: Request access for the account/token from Evrim.
+  retryable: false
+  source: sdk-error-table
+- status: 404
+  name: NotFoundError
+  title: Not found
+  meaning: >-
+    The resource or route does not exist. Observed live as {"detail":"Not Found"}.
+  remediation: Check the id and the path prefix.
+  retryable: false
+  source: sdk-error-table + live probe
+- status: 405
+  name: MethodNotAllowed
+  title: Method not allowed
+  meaning: >-
+    The route exists but not for this HTTP method; the response carries an `allow`
+    header (e.g. `allow: DELETE, POST` on /mcp).
+  remediation: Use a method listed in the `allow` header.
+  retryable: false
+  source: live probe
+- status: 408
+  name: RequestTimeout
+  title: Request timeout
+  meaning: The request timed out server-side.
+  remediation: Retry; the first-party SDK retries this automatically.
+  retryable: true
+  source: sdk-retry-policy
+- status: 409
+  name: Conflict
+  title: Conflict
+  meaning: The request conflicts with current resource state.
+  remediation: Re-read state and retry; the first-party SDK retries this automatically.
+  retryable: true
+  source: sdk-retry-policy
+- status: 422
+  name: UnprocessableEntityError
+  title: Unprocessable entity
+  meaning: The request was syntactically valid but semantically rejected.
+  remediation: Fix the field values named in `detail`.
+  retryable: false
+  source: sdk-error-table
+- status: 429
+  name: RateLimitError
+  title: Too many requests
+  meaning: The client exceeded a rate limit. See rate-limits/evrim-rate-limits.yml.
+  remediation: >-
+    Back off. The first-party SDK honours `retry-after-ms`, `retry-after` (seconds
+    or HTTP-date) and `x-should-retry`, and retries with exponential backoff.
+  retryable: true
+  source: sdk-error-table + sdk-retry-policy
+- status: 5xx
+  name: InternalServerError
+  title: Server error
+  meaning: Any status >= 500.
+  remediation: Retry with backoff; the first-party SDK retries these automatically.
+  retryable: true
+  source: sdk-error-table
+transport_errors:
+- name: APIConnectionError
+  meaning: The library could not reach the API (network failure or timeout).
+  retryable: true
+- name: APITimeoutError
+  meaning: >-
+    Client-side timeout. The SDK default request timeout is 60 seconds; timed-out
+    requests are retried twice by default.
+  retryable: true
+cross_links:
+  conventions: conventions/evrim-conventions.yml
+  rate_limits: rate-limits/evrim-rate-limits.yml
+  authentication: authentication/evrim-authentication.yml

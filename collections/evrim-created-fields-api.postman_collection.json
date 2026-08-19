@@ -1,0 +1,1326 @@
+{
+  "item": [
+    {
+      "id": "85d9d567-d389-43bd-87dd-a1bcfbae5a33",
+      "name": "created-fields",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3b712e4-827f-4798-a9e6-634d6237bd0f",
+          "name": "created fields list",
+          "request": {
+            "name": "created fields list",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "created-fields",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1b6e3e65-afb1-44f1-9d0f-9d507809fbb4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "created-fields",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"field\": {\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"rel_template\": 1501,\n        \"type\": \"str\",\n        \"id\": 581,\n        \"enum_values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enum_many\": true,\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directed\": false,\n        \"keyword_search\": true,\n        \"raw_documents\": false\n      },\n      \"id\": 6710,\n      \"status\": \"s\",\n      \"value\": {},\n      \"keyword_search\": true,\n      \"raw_documents\": true\n    },\n    {\n      \"field\": {\n        \"description\": \"string\",\n        \"name\": \"string\",\n        \"rel_template\": 2024,\n        \"type\": \"str\",\n        \"id\": 9381,\n        \"enum_values\": [\n          \"string\",\n          \"string\"\n        ],\n        \"enum_many\": true,\n        \"sources\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directed\": false,\n        \"keyword_search\": true,\n        \"raw_documents\": false\n      },\n      \"id\": 6090,\n      \"status\": \"s\",\n      \"value\": {},\n      \"keyword_search\": false,\n      \"raw_documents\": false\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f14f672-8680-46a2-b325-44ba328b9b67",
+          "name": "created fields create",
+          "request": {
+            "name": "created fields create",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "created-fields",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "specification",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_entity_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enum_values",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enum_values",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enum_many",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "[{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false},{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}]"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "questions",
+                  "value": "[\"<string>\",\"<string>\"]"
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "directed_source",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword_search",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "raw_documents",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6b32b8a7-3489-42b6-af6f-c9da87adc5b3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "created-fields",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "specification",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "source_entity_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enum_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enum_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enum_many",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "fields",
+                      "value": "[{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false},{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "questions",
+                      "value": "[\"<string>\",\"<string>\"]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "directed_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword_search",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "raw_documents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5974,\n  \"field\": {\n    \"description\": \"<string>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"rel_template\": 2454,\n    \"enum_values\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enum_many\": \"<boolean>\",\n    \"sources\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"directed\": false,\n    \"keyword_search\": true,\n    \"raw_documents\": false\n  },\n  \"status\": \"s\",\n  \"value\": {},\n  \"keyword_search\": \"<boolean>\",\n  \"raw_documents\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f63b9eb-1457-4dff-ac13-dc5264a08969",
+          "name": "created fields profile create",
+          "request": {
+            "name": "created fields profile create",
+            "description": {
+              "content": "Attach a created field to a profile",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "created-fields",
+                ":field_id",
+                "profile",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "field_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "profile_id",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2e424819-3e80-4efc-a70a-667078beb05b",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "created-fields",
+                    ":field_id",
+                    "profile",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "field_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "profile_id",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f541e3c-4bb9-43ea-b7ae-a7f5a466c141",
+          "name": "created fields retrieve",
+          "request": {
+            "name": "created fields retrieve",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "created-fields",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this created field."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "293d5198-6953-4753-ac1d-cce742ed0a46",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "created-fields",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this created field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5974,\n  \"field\": {\n    \"description\": \"<string>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"rel_template\": 2454,\n    \"enum_values\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enum_many\": \"<boolean>\",\n    \"sources\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"directed\": false,\n    \"keyword_search\": true,\n    \"raw_documents\": false\n  },\n  \"status\": \"s\",\n  \"value\": {},\n  \"keyword_search\": \"<boolean>\",\n  \"raw_documents\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "619ad5aa-0116-478b-840a-2d34c5364320",
+          "name": "created fields update",
+          "request": {
+            "name": "created fields update",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "created-fields",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this created field."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "specification",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_entity_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enum_values",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enum_values",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enum_many",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "[{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false},{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}]"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "questions",
+                  "value": "[\"<string>\",\"<string>\"]"
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "directed_source",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword_search",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "raw_documents",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0bda172b-da9a-4820-b923-6c17a4bfba1f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "created-fields",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this created field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "specification",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "source_entity_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enum_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enum_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enum_many",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "fields",
+                      "value": "[{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false},{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "questions",
+                      "value": "[\"<string>\",\"<string>\"]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "directed_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword_search",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "raw_documents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5974,\n  \"field\": {\n    \"description\": \"<string>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"rel_template\": 2454,\n    \"enum_values\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enum_many\": \"<boolean>\",\n    \"sources\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"directed\": false,\n    \"keyword_search\": true,\n    \"raw_documents\": false\n  },\n  \"status\": \"s\",\n  \"value\": {},\n  \"keyword_search\": \"<boolean>\",\n  \"raw_documents\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b918274c-4aae-4b7a-9db4-e54a1a1c8a8f",
+          "name": "created fields partial update",
+          "request": {
+            "name": "created fields partial update",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "created-fields",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this created field."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "specification",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_entity_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enum_values",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enum_values",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "enum_many",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "[{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false},{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}]"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "questions",
+                  "value": "[\"<string>\",\"<string>\"]"
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "directed_source",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "keyword_search",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "raw_documents",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "172e72d5-9741-4b7c-99ce-e449de82fb56",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "created-fields",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this created field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "specification",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "source_entity_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enum_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enum_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "enum_many",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "fields",
+                      "value": "[{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false},{\"description\":\"<string>\",\"name\":\"<string>\",\"type\":\"<string>\",\"id\":\"<integer>\",\"rel_template_id\":\"<integer>\",\"enum_values\":[\"<string>\",\"<string>\"],\"enum_many\":\"<boolean>\",\"sources\":[\"<string>\",\"<string>\"],\"directed\":false,\"keyword_search\":true,\"raw_documents\":false}]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "questions",
+                      "value": "[\"<string>\",\"<string>\"]"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "directed_source",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "keyword_search",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "raw_documents",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5974,\n  \"field\": {\n    \"description\": \"<string>\",\n    \"name\": \"<string>\",\n    \"type\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"rel_template\": 2454,\n    \"enum_values\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enum_many\": \"<boolean>\",\n    \"sources\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"directed\": false,\n    \"keyword_search\": true,\n    \"raw_documents\": false\n  },\n  \"status\": \"s\",\n  \"value\": {},\n  \"keyword_search\": \"<boolean>\",\n  \"raw_documents\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0a2cf11-f6a1-4593-ae5b-df3519dac78e",
+          "name": "created fields destroy",
+          "request": {
+            "name": "created fields destroy",
+            "description": {},
+            "url": {
+              "path": [
+                "prod",
+                "v0",
+                "created-fields",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) A unique integer value identifying this created field."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7cf48a20-2e2f-4004-86fc-76b431291ae3",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prod",
+                    "v0",
+                    "created-fields",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) A unique integer value identifying this created field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "989b2449-2681-4d51-aba7-ee0580d4be06",
+    "name": "Evrim answers created-fields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Data when and how you want it.",
+      "type": "text/plain"
+    }
+  }
+}
