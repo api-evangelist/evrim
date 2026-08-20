@@ -39,6 +39,16 @@ tags:
 - Profiles
 - Entity Resolution
 - Defense
+- Financial-Services
+- Government
+tags_raw:
+- Company
+- Intelligence
+- Signals
+- Data Enrichment
+- Profiles
+- Entity Resolution
+- Defense
 - Financial Services
 - Government
 apis:
@@ -48,6 +58,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Answers
+  tags_raw:
   - answers
   properties:
   - type: OpenAPI
@@ -58,6 +70,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Blank
+  tags_raw:
   - blank
   properties:
   - type: OpenAPI
@@ -68,6 +82,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Bulk
+  tags_raw:
   - bulk
   properties:
   - type: OpenAPI
@@ -78,6 +94,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Collection
+  tags_raw:
   - collections
   properties:
   - type: OpenAPI
@@ -88,6 +106,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Compose
+  tags_raw:
   - compose
   properties:
   - type: OpenAPI
@@ -98,6 +118,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Costs
+  tags_raw:
   - costs
   properties:
   - type: OpenAPI
@@ -118,6 +140,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Extract
+  tags_raw:
   - extract
   properties:
   - type: OpenAPI
@@ -128,6 +152,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Fields
+  tags_raw:
   - fields
   properties:
   - type: OpenAPI
@@ -138,6 +164,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Health
+  tags_raw:
   - health
   properties:
   - type: OpenAPI
@@ -148,6 +176,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Prod
+  tags_raw:
   - prod
   properties:
   - type: OpenAPI
@@ -158,6 +188,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Profiles
+  tags_raw:
   - profiles
   properties:
   - type: OpenAPI
@@ -168,6 +200,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Prompt Templates
+  tags_raw:
   - prompt-templates
   properties:
   - type: OpenAPI
@@ -178,6 +212,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Questions
+  tags_raw:
   - questions
   properties:
   - type: OpenAPI
@@ -188,6 +224,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Snapshots
+  tags_raw:
   - snapshots
   properties:
   - type: OpenAPI
@@ -198,6 +236,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Tags
+  tags_raw:
   - tags
   properties:
   - type: OpenAPI
@@ -208,6 +248,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Templates
+  tags_raw:
   - templates
   properties:
   - type: OpenAPI
@@ -218,6 +260,8 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
+  - Transforms
+  tags_raw:
   - transform
   properties:
   - type: OpenAPI
