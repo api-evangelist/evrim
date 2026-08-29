@@ -8,6 +8,18 @@ description: >-
   values and relationships from source content. Every operation authenticates
   with a Knox-issued API token sent as an HTTP Bearer credential, and an
   official Stainless-generated Python SDK is published on PyPI.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
