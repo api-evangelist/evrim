@@ -82,7 +82,7 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
-  - blank
+  - Blank
   tags_raw:
   - blank
   properties:
@@ -118,7 +118,7 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
-  - compose
+  - Compose
   tags_raw:
   - compose
   properties:
@@ -152,7 +152,7 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
-  - extract
+  - Extract
   tags_raw:
   - extract
   properties:
@@ -188,7 +188,7 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
-  - prod
+  - Prod
   tags_raw:
   - prod
   properties:
@@ -212,7 +212,7 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
-  - prompt-templates
+  - Prompt Templates
   tags_raw:
   - prompt-templates
   properties:
@@ -224,7 +224,7 @@ apis:
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
   tags:
-  - questions
+  - Questions
   tags_raw:
   - questions
   properties:
