@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Evrim answers health API
+  title: Evrim Health API
   version: 0.5.18
   description: Data when and how you want it.
 tags:
-- name: health
+- name: Health
 paths:
   /prod/v0/health/profile/{profile_id}/latest/:
     get:
@@ -17,12 +17,14 @@ paths:
           type: integer
         required: true
       tags:
-      - health
+      - Health
       security:
       - knoxApiToken: []
       responses:
         '200':
           description: No response body
+      summary: Health profile latest retrieve
+      x-summary-source: derived
   /prod/v0/health/snapshot/{snapshot_id}/:
     get:
       operationId: health_snapshot_retrieve
@@ -34,12 +36,14 @@ paths:
           type: integer
         required: true
       tags:
-      - health
+      - Health
       security:
       - knoxApiToken: []
       responses:
         '200':
           description: No response body
+      summary: Health snapshot retrieve
+      x-summary-source: derived
 components:
   securitySchemes:
     knoxApiToken:

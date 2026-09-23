@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Evrim answers costs API
+  title: Evrim Costs API
   version: 0.5.18
   description: Data when and how you want it.
 tags:
-- name: costs
+- name: Costs
 paths:
   /prod/v0/costs/answer/:
     get:
@@ -23,7 +23,7 @@ paths:
         schema:
           type: integer
       tags:
-      - costs
+      - Costs
       security:
       - knoxApiToken: []
       responses:
@@ -33,6 +33,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedAnswerCostsList'
           description: ''
+      summary: Costs answer list
+      x-summary-source: derived
   /prod/v0/costs/answer/{id}/:
     get:
       operationId: costs_answer_retrieve
@@ -44,7 +46,7 @@ paths:
         description: A unique integer value identifying this answer.
         required: true
       tags:
-      - costs
+      - Costs
       security:
       - knoxApiToken: []
       responses:
@@ -54,39 +56,47 @@ paths:
               schema:
                 $ref: '#/components/schemas/AnswerCosts'
           description: ''
+      summary: Costs answer retrieve
+      x-summary-source: derived
   /prod/v0/costs/average/answer/:
     get:
       operationId: costs_average_answer_retrieve
       description: Get avg answer cost for all answers
       tags:
-      - costs
+      - Costs
       security:
       - knoxApiToken: []
       responses:
         '200':
           description: No response body
+      summary: Costs average answer retrieve
+      x-summary-source: derived
   /prod/v0/costs/average/field/:
     get:
       operationId: costs_average_field_retrieve
       description: Get avg field cost for all fields
       tags:
-      - costs
+      - Costs
       security:
       - knoxApiToken: []
       responses:
         '200':
           description: No response body
+      summary: Costs average field retrieve
+      x-summary-source: derived
   /prod/v0/costs/average/field/type/:
     get:
       operationId: costs_average_field_type_retrieve
       description: Get avg field cost for all fields by field type
       tags:
-      - costs
+      - Costs
       security:
       - knoxApiToken: []
       responses:
         '200':
           description: No response body
+      summary: Costs average field type retrieve
+      x-summary-source: derived
   /prod/v0/costs/created-field/:
     get:
       operationId: costs_created_field_list
@@ -104,7 +114,7 @@ paths:
         schema:
           type: integer
       tags:
-      - costs
+      - Costs
       security:
       - knoxApiToken: []
       responses:
@@ -114,6 +124,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedCreatedFieldCostsList'
           description: ''
+      summary: Costs created field list
+      x-summary-source: derived
   /prod/v0/costs/created-field/{id}/:
     get:
       operationId: costs_created_field_retrieve
@@ -125,7 +137,7 @@ paths:
         description: A unique integer value identifying this created field.
         required: true
       tags:
-      - costs
+      - Costs
       security:
       - knoxApiToken: []
       responses:
@@ -135,6 +147,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CreatedFieldCosts'
           description: ''
+      summary: Costs created field retrieve
+      x-summary-source: derived
   /prod/v0/costs/snapshot/{id}/:
     get:
       operationId: costs_snapshot_retrieve
@@ -146,7 +160,7 @@ paths:
         description: A unique integer value identifying this snapshot.
         required: true
       tags:
-      - costs
+      - Costs
       security:
       - knoxApiToken: []
       responses:
@@ -156,65 +170,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/SnapshotCost'
           description: ''
+      summary: Costs snapshot retrieve
+      x-summary-source: derived
 components:
   schemas:
-    PaginatedAnswerCostsList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnswerCosts'
-    AnswerCosts:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        answer_id:
-          type: integer
-          writeOnly: true
-        total:
-          type: number
-          format: double
-          readOnly: true
-      required:
-      - answer_id
-      - id
-      - total
-    CreatedFieldCosts:
-      type: object
-      properties:
-        field_id:
-          type: integer
-          writeOnly: true
-        id:
-          type: integer
-          readOnly: true
-        total:
-          type: number
-          format: double
-          readOnly: true
-      required:
-      - field_id
-      - id
-      - total
     SnapshotCost:
       type: object
       properties:
@@ -238,6 +197,23 @@ components:
       - field_costs
       - id
       - total_cost
+    AnswerCosts:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        answer_id:
+          type: integer
+          writeOnly: true
+        total:
+          type: number
+          format: double
+          readOnly: true
+      required:
+      - answer_id
+      - id
+      - total
     PaginatedCreatedFieldCostsList:
       type: object
       required:
@@ -248,19 +224,63 @@ components:
           type: integer
           example: 123
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: uri
           example: http://api.example.org/accounts/?offset=400&limit=100
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: uri
           example: http://api.example.org/accounts/?offset=200&limit=100
         results:
           type: array
           items:
             $ref: '#/components/schemas/CreatedFieldCosts'
+    PaginatedAnswerCostsList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerCosts'
+    CreatedFieldCosts:
+      type: object
+      properties:
+        field_id:
+          type: integer
+          writeOnly: true
+        id:
+          type: integer
+          readOnly: true
+        total:
+          type: number
+          format: double
+          readOnly: true
+      required:
+      - field_id
+      - id
+      - total
   securitySchemes:
     knoxApiToken:
       type: http

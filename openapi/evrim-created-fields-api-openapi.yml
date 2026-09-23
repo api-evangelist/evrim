@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Evrim answers created-fields API
+  title: Evrim Created Fields API
   version: 0.5.18
   description: Data when and how you want it.
 tags:
@@ -33,6 +33,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedCreatedFieldList'
           description: ''
+      summary: Created fields list
+      x-summary-source: derived
     post:
       operationId: created_fields_create
       tags:
@@ -58,6 +60,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CreatedField'
           description: ''
+      summary: Created fields create
+      x-summary-source: derived
   /prod/v0/created-fields/{field_id}/profile/:
     post:
       operationId: created_fields_profile_create
@@ -88,6 +92,8 @@ paths:
       responses:
         '201':
           description: No response body
+      summary: Created fields profile create
+      x-summary-source: derived
   /prod/v0/created-fields/{id}/:
     get:
       operationId: created_fields_retrieve
@@ -109,6 +115,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CreatedField'
           description: ''
+      summary: Created fields retrieve
+      x-summary-source: derived
     put:
       operationId: created_fields_update
       parameters:
@@ -141,6 +149,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CreatedField'
           description: ''
+      summary: Created fields update
+      x-summary-source: derived
     patch:
       operationId: created_fields_partial_update
       parameters:
@@ -172,6 +182,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CreatedField'
           description: ''
+      summary: Created fields partial update
+      x-summary-source: derived
     delete:
       operationId: created_fields_destroy
       parameters:
@@ -188,6 +200,8 @@ paths:
       responses:
         '204':
           description: No response body
+      summary: Created fields destroy
+      x-summary-source: derived
 components:
   schemas:
     Template:
@@ -200,8 +214,9 @@ components:
           type: string
           maxLength: 255
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         fields:
           type: array
           items:
@@ -215,78 +230,6 @@ components:
       - fields
       - id
       - name
-    Field:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
-          type: integer
-          writeOnly: true
-          nullable: true
-        rel_template:
-          type: integer
-          readOnly: true
-          nullable: true
-        enum_values:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-          nullable: true
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
-      required:
-      - description
-      - name
-      - rel_template
-      - type
-    PaginatedCreatedFieldList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreatedField'
     CreatedFieldToProfile:
       type: object
       properties:
@@ -310,9 +253,10 @@ components:
           writeOnly: true
           maxLength: 255
         source_entity_type:
-          type: string
+          type:
+          - string
+          - 'null'
           writeOnly: true
-          nullable: true
           maxLength: 255
         description:
           type: string
@@ -346,23 +290,27 @@ components:
         value:
           readOnly: true
         sources:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             maxLength: 255
           writeOnly: true
-          nullable: true
         directed_source:
-          type: string
+          type:
+          - string
+          - 'null'
           writeOnly: true
-          nullable: true
           maxLength: 255
         keyword_search:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         raw_documents:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
       required:
       - description
       - field
@@ -387,9 +335,10 @@ components:
           writeOnly: true
           maxLength: 255
         source_entity_type:
-          type: string
+          type:
+          - string
+          - 'null'
           writeOnly: true
-          nullable: true
           maxLength: 255
         description:
           type: string
@@ -423,23 +372,104 @@ components:
         value:
           readOnly: true
         sources:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             maxLength: 255
           writeOnly: true
-          nullable: true
         directed_source:
-          type: string
+          type:
+          - string
+          - 'null'
           writeOnly: true
-          nullable: true
           maxLength: 255
         keyword_search:
+          type:
+          - boolean
+          - 'null'
+        raw_documents:
+          type:
+          - boolean
+          - 'null'
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type:
+          - integer
+          - 'null'
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+        enum_many:
           type: boolean
-          nullable: true
+        sources:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
         raw_documents:
           type: boolean
-          nullable: true
+          default: false
+      required:
+      - description
+      - name
+      - rel_template
+      - type
+    PaginatedCreatedFieldList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
   securitySchemes:
     knoxApiToken:
       type: http

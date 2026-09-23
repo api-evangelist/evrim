@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Evrim answers prompt-templates API
+  title: Evrim Prompt Templates API
   version: 0.5.18
   description: Data when and how you want it.
 tags:
-- name: prompt-templates
+- name: Prompt Templates
 paths:
   /prod/v0/prompt-templates/:
     get:
@@ -23,7 +23,7 @@ paths:
         schema:
           type: integer
       tags:
-      - prompt-templates
+      - Prompt Templates
       security:
       - knoxApiToken: []
       responses:
@@ -33,10 +33,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedPromptTemplateList'
           description: ''
+      summary: Prompt templates list
+      x-summary-source: derived
     post:
       operationId: prompt_templates_create
       tags:
-      - prompt-templates
+      - Prompt Templates
       requestBody:
         content:
           application/json:
@@ -58,6 +60,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/PromptTemplate'
           description: ''
+      summary: Prompt templates create
+      x-summary-source: derived
   /prod/v0/prompt-templates/{id}/:
     get:
       operationId: prompt_templates_retrieve
@@ -69,7 +73,7 @@ paths:
         description: A unique integer value identifying this prompt template.
         required: true
       tags:
-      - prompt-templates
+      - Prompt Templates
       security:
       - knoxApiToken: []
       responses:
@@ -79,22 +83,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/PromptTemplate'
           description: ''
+      summary: Prompt templates retrieve
+      x-summary-source: derived
 components:
   schemas:
-    StatusEnum:
-      enum:
-      - W
-      - P
-      - C
-      - F
-      type: string
-      description: '* `W` - WAITING
-
-        * `P` - PROCESSING
-
-        * `C` - COMPLETED
-
-        * `F` - FAILED'
     Template:
       type: object
       properties:
@@ -105,8 +97,9 @@ components:
           type: string
           maxLength: 255
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         fields:
           type: array
           items:
@@ -120,55 +113,6 @@ components:
       - fields
       - id
       - name
-    Field:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
-          type: integer
-          writeOnly: true
-          nullable: true
-        rel_template:
-          type: integer
-          readOnly: true
-          nullable: true
-        enum_values:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-          nullable: true
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
-      required:
-      - description
-      - name
-      - rel_template
-      - type
     PaginatedPromptTemplateList:
       type: object
       required:
@@ -179,13 +123,15 @@ components:
           type: integer
           example: 123
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: uri
           example: http://api.example.org/accounts/?offset=400&limit=100
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: uri
           example: http://api.example.org/accounts/?offset=200&limit=100
         results:
@@ -210,6 +156,72 @@ components:
       - id
       - prompt
       - template
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type:
+          - integer
+          - 'null'
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
+      required:
+      - description
+      - name
+      - rel_template
+      - type
+    StatusEnum:
+      enum:
+      - W
+      - P
+      - C
+      - F
+      type: string
+      description: '* `W` - WAITING
+
+        * `P` - PROCESSING
+
+        * `C` - COMPLETED
+
+        * `F` - FAILED'
   securitySchemes:
     knoxApiToken:
       type: http

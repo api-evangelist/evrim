@@ -1,16 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Evrim answers compose API
+  title: Evrim Compose API
   version: 0.5.18
   description: Data when and how you want it.
 tags:
-- name: compose
+- name: Compose
 paths:
   /prod/v0/compose/profile/snapshot/:
     post:
       operationId: compose_profile_snapshot_create
       tags:
-      - compose
+      - Compose
       requestBody:
         content:
           application/json:
@@ -32,6 +32,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ComposeProfileSnapshot'
           description: ''
+      summary: Compose profile snapshot create
+      x-summary-source: derived
 components:
   schemas:
     Template:
@@ -44,8 +46,9 @@ components:
           type: string
           maxLength: 255
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         fields:
           type: array
           items:
@@ -90,55 +93,128 @@ components:
       - id
       - reports
       - status
-    Field:
+    CreatedField:
       type: object
       properties:
         id:
           type: integer
+          readOnly: true
         name:
           type: string
+          writeOnly: true
+          maxLength: 255
+        specification:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        source_entity_type:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
           maxLength: 255
         description:
           type: string
+          writeOnly: true
           maxLength: 255
         type:
           type: string
-          maxLength: 3
-        rel_template_id:
-          type: integer
           writeOnly: true
-          nullable: true
-        rel_template:
-          type: integer
-          readOnly: true
-          nullable: true
+          maxLength: 3
         enum_values:
           type: array
           items:
             type: string
             maxLength: 255
+          writeOnly: true
         enum_many:
           type: boolean
+          writeOnly: true
+        rel_template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          writeOnly: true
+        field:
+          allOf:
+          - $ref: '#/components/schemas/Field'
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        value:
+          readOnly: true
         sources:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             maxLength: 255
-          nullable: true
-        directed:
-          type: boolean
-          default: false
+          writeOnly: true
+        directed_source:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+          maxLength: 255
         keyword_search:
-          type: boolean
-          default: true
+          type:
+          - boolean
+          - 'null'
         raw_documents:
-          type: boolean
-          default: false
+          type:
+          - boolean
+          - 'null'
       required:
       - description
+      - field
+      - id
       - name
-      - rel_template
+      - specification
+      - status
       - type
+      - value
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        outline_id:
+          type: integer
+          writeOnly: true
+        outline:
+          allOf:
+          - $ref: '#/components/schemas/Outline'
+          readOnly: true
+        report:
+          readOnly: true
+      required:
+      - id
+      - outline
+      - outline_id
+      - profile_id
+      - report
     Outline:
       type: object
       properties:
@@ -158,8 +234,7 @@ components:
             type: string
             maxLength: 255
           writeOnly: true
-        outline:
-          nullable: true
+        outline: {}
         perspective:
           type: string
           maxLength: 255
@@ -200,107 +275,58 @@ components:
       - profile
       - specification
       - template_id
-    Report:
+    Field:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
-        profile_id:
-          type: integer
-          writeOnly: true
-        outline_id:
-          type: integer
-          writeOnly: true
-        outline:
-          allOf:
-          - $ref: '#/components/schemas/Outline'
-          readOnly: true
-        report:
-          readOnly: true
-      required:
-      - id
-      - outline
-      - outline_id
-      - profile_id
-      - report
-    CreatedField:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
         name:
           type: string
-          writeOnly: true
-          maxLength: 255
-        specification:
-          type: string
-          writeOnly: true
-          maxLength: 255
-        source_entity_type:
-          type: string
-          writeOnly: true
-          nullable: true
           maxLength: 255
         description:
           type: string
-          writeOnly: true
           maxLength: 255
         type:
           type: string
-          writeOnly: true
           maxLength: 3
+        rel_template_id:
+          type:
+          - integer
+          - 'null'
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
         enum_values:
           type: array
           items:
             type: string
             maxLength: 255
-          writeOnly: true
         enum_many:
           type: boolean
-          writeOnly: true
-        rel_template:
-          allOf:
-          - $ref: '#/components/schemas/Template'
-          writeOnly: true
-        field:
-          allOf:
-          - $ref: '#/components/schemas/Field'
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        value:
-          readOnly: true
         sources:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             maxLength: 255
-          writeOnly: true
-          nullable: true
-        directed_source:
-          type: string
-          writeOnly: true
-          nullable: true
-          maxLength: 255
+        directed:
+          type: boolean
+          default: false
         keyword_search:
           type: boolean
-          nullable: true
+          default: true
         raw_documents:
           type: boolean
-          nullable: true
+          default: false
       required:
       - description
-      - field
-      - id
       - name
-      - specification
-      - status
+      - rel_template
       - type
-      - value
     Profile:
       type: object
       properties:
@@ -351,28 +377,14 @@ components:
           readOnly: true
           maxLength: 510
         source:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 510
       required:
       - answer
       - id
       - question
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          nullable: true
-      required:
-      - id
-      - name
   securitySchemes:
     knoxApiToken:
       type: http

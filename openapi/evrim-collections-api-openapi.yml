@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Evrim answers collections API
+  title: Evrim Collections API
   version: 0.5.18
   description: Data when and how you want it.
 tags:
-- name: collections
+- name: Collections
 paths:
   /prod/v0/collections/:
     get:
@@ -23,7 +23,7 @@ paths:
         schema:
           type: integer
       tags:
-      - collections
+      - Collections
       security:
       - knoxApiToken: []
       responses:
@@ -33,10 +33,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaginatedCollectionList'
           description: ''
+      summary: Collections list
+      x-summary-source: derived
     post:
       operationId: collections_create
       tags:
-      - collections
+      - Collections
       requestBody:
         content:
           application/json:
@@ -58,6 +60,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Collection'
           description: ''
+      summary: Collections create
+      x-summary-source: derived
   /prod/v0/collections/{id}/:
     get:
       operationId: collections_retrieve
@@ -69,7 +73,7 @@ paths:
         description: A unique integer value identifying this collection.
         required: true
       tags:
-      - collections
+      - Collections
       security:
       - knoxApiToken: []
       responses:
@@ -79,6 +83,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Collection'
           description: ''
+      summary: Collections retrieve
+      x-summary-source: derived
     put:
       operationId: collections_update
       parameters:
@@ -89,7 +95,7 @@ paths:
         description: A unique integer value identifying this collection.
         required: true
       tags:
-      - collections
+      - Collections
       requestBody:
         content:
           application/json:
@@ -111,6 +117,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Collection'
           description: ''
+      summary: Collections update
+      x-summary-source: derived
     patch:
       operationId: collections_partial_update
       parameters:
@@ -121,7 +129,7 @@ paths:
         description: A unique integer value identifying this collection.
         required: true
       tags:
-      - collections
+      - Collections
       requestBody:
         content:
           application/json:
@@ -142,6 +150,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Collection'
           description: ''
+      summary: Collections partial update
+      x-summary-source: derived
     delete:
       operationId: collections_destroy
       parameters:
@@ -152,15 +162,17 @@ paths:
         description: A unique integer value identifying this collection.
         required: true
       tags:
-      - collections
+      - Collections
       security:
       - knoxApiToken: []
       responses:
         '204':
           description: No response body
+      summary: Collections destroy
+      x-summary-source: derived
 components:
   schemas:
-    Template:
+    PatchedCollection:
       type: object
       properties:
         id:
@@ -171,7 +183,47 @@ components:
           maxLength: 255
         description:
           type: string
-          nullable: true
+          maxLength: 255
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+          readOnly: true
+    Collection:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+          readOnly: true
+      required:
+      - collection
+      - description
+      - id
+      - name
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
         fields:
           type: array
           items:
@@ -216,149 +268,6 @@ components:
       - id
       - reports
       - status
-    Field:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
-          type: integer
-          writeOnly: true
-          nullable: true
-        rel_template:
-          type: integer
-          readOnly: true
-          nullable: true
-        enum_values:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-          nullable: true
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
-      required:
-      - description
-      - name
-      - rel_template
-      - type
-    PatchedCollection:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/Profile'
-          readOnly: true
-    Outline:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        profile_id:
-          type: integer
-          writeOnly: true
-        report_title:
-          type: string
-          writeOnly: true
-          maxLength: 255
-        section_titles:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-          writeOnly: true
-        outline:
-          nullable: true
-        perspective:
-          type: string
-          maxLength: 255
-      required:
-      - id
-      - perspective
-      - profile_id
-      - report_title
-      - section_titles
-    PaginatedCollectionList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Collection'
-    Report:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        profile_id:
-          type: integer
-          writeOnly: true
-        outline_id:
-          type: integer
-          writeOnly: true
-        outline:
-          allOf:
-          - $ref: '#/components/schemas/Outline'
-          readOnly: true
-        report:
-          readOnly: true
-      required:
-      - id
-      - outline
-      - outline_id
-      - profile_id
-      - report
     CreatedField:
       type: object
       properties:
@@ -374,9 +283,10 @@ components:
           writeOnly: true
           maxLength: 255
         source_entity_type:
-          type: string
+          type:
+          - string
+          - 'null'
           writeOnly: true
-          nullable: true
           maxLength: 255
         description:
           type: string
@@ -410,23 +320,27 @@ components:
         value:
           readOnly: true
         sources:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             maxLength: 255
           writeOnly: true
-          nullable: true
         directed_source:
-          type: string
+          type:
+          - string
+          - 'null'
           writeOnly: true
-          nullable: true
           maxLength: 255
         keyword_search:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         raw_documents:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
       required:
       - description
       - field
@@ -436,6 +350,127 @@ components:
       - status
       - type
       - value
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        outline_id:
+          type: integer
+          writeOnly: true
+        outline:
+          allOf:
+          - $ref: '#/components/schemas/Outline'
+          readOnly: true
+        report:
+          readOnly: true
+      required:
+      - id
+      - outline
+      - outline_id
+      - profile_id
+      - report
+    Outline:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        report_title:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        section_titles:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        outline: {}
+        perspective:
+          type: string
+          maxLength: 255
+      required:
+      - id
+      - perspective
+      - profile_id
+      - report_title
+      - section_titles
+    Field:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type:
+          - integer
+          - 'null'
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
+      required:
+      - description
+      - name
+      - rel_template
+      - type
     Profile:
       type: object
       properties:
@@ -473,28 +508,31 @@ components:
       - specification
       - template
       - template_id
-    Collection:
+    PaginatedCollectionList:
       type: object
+      required:
+      - count
+      - results
       properties:
-        id:
+        count:
           type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        collection:
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
           type: array
           items:
-            $ref: '#/components/schemas/Profile'
-          readOnly: true
-      required:
-      - collection
-      - description
-      - id
-      - name
+            $ref: '#/components/schemas/Collection'
     Answer:
       type: object
       properties:
@@ -508,28 +546,14 @@ components:
           readOnly: true
           maxLength: 510
         source:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 510
       required:
       - answer
       - id
       - question
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          nullable: true
-      required:
-      - id
-      - name
   securitySchemes:
     knoxApiToken:
       type: http

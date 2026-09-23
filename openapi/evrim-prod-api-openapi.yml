@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Evrim answers prod API
+  title: Evrim Prod API
   version: 0.5.18
   description: Data when and how you want it.
 tags:
-- name: prod
+- name: Prod
 paths:
   /prod/schema/:
     get:
@@ -128,7 +128,7 @@ paths:
           - zh-hans
           - zh-hant
       tags:
-      - prod
+      - Prod
       security:
       - knoxApiToken: []
       - {}
@@ -152,6 +152,8 @@ paths:
                 type: object
                 additionalProperties: {}
           description: ''
+      summary: Prod schema retrieve
+      x-summary-source: derived
 components:
   securitySchemes:
     knoxApiToken:
