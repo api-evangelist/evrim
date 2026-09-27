@@ -62,18 +62,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BlankProfile:
+    BlankTemplate:
       type: object
-      description: Create a blank profile
+      description: Create a blank template
       properties:
         id:
           type: integer
           readOnly: true
       required:
       - id
-    BlankTemplate:
+    BlankProfile:
       type: object
-      description: Create a blank template
+      description: Create a blank profile
       properties:
         id:
           type: integer

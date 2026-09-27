@@ -36,63 +36,58 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Template:
+    Field:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
         name:
           type: string
           maxLength: 255
         description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
           type:
-          - string
+          - integer
           - 'null'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        questions:
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
           type: array
           items:
             type: string
             maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
       required:
-      - fields
-      - id
+      - description
       - name
-    Snapshot:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        answers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Answer'
-          readOnly: true
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreatedField'
-          readOnly: true
-        reports:
-          type: array
-          items:
-            $ref: '#/components/schemas/Report'
-          readOnly: true
-      required:
-      - answers
-      - fields
-      - id
-      - reports
-      - status
+      - rel_template
+      - type
     CreatedField:
       type: object
       properties:
@@ -175,7 +170,7 @@ components:
       - status
       - type
       - value
-    Tag:
+    Template:
       type: object
       properties:
         id:
@@ -188,33 +183,19 @@ components:
           type:
           - string
           - 'null'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
+          type: array
+          items:
+            type: string
+            maxLength: 255
       required:
+      - fields
       - id
       - name
-    Report:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        profile_id:
-          type: integer
-          writeOnly: true
-        outline_id:
-          type: integer
-          writeOnly: true
-        outline:
-          allOf:
-          - $ref: '#/components/schemas/Outline'
-          readOnly: true
-        report:
-          readOnly: true
-      required:
-      - id
-      - outline
-      - outline_id
-      - profile_id
-      - report
     Outline:
       type: object
       properties:
@@ -244,89 +225,6 @@ components:
       - profile_id
       - report_title
       - section_titles
-    ComposeProfileSnapshot:
-      type: object
-      description: Compose a profile snapshot from a template, specification, fields, and answers
-      properties:
-        template_id:
-          type: integer
-          writeOnly: true
-        specification:
-          type: string
-          writeOnly: true
-          maxLength: 255
-        created_field_ids:
-          type: array
-          items:
-            type: integer
-          writeOnly: true
-        answer_ids:
-          type: array
-          items:
-            type: integer
-          writeOnly: true
-        profile:
-          allOf:
-          - $ref: '#/components/schemas/Profile'
-          readOnly: true
-      required:
-      - answer_ids
-      - created_field_ids
-      - profile
-      - specification
-      - template_id
-    Field:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
-          type:
-          - integer
-          - 'null'
-          writeOnly: true
-        rel_template:
-          type:
-          - integer
-          - 'null'
-          readOnly: true
-        enum_values:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 255
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
-      required:
-      - description
-      - name
-      - rel_template
-      - type
     Profile:
       type: object
       properties:
@@ -364,6 +262,108 @@ components:
       - specification
       - template
       - template_id
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        outline_id:
+          type: integer
+          writeOnly: true
+        outline:
+          allOf:
+          - $ref: '#/components/schemas/Outline'
+          readOnly: true
+        report:
+          readOnly: true
+      required:
+      - id
+      - outline
+      - outline_id
+      - profile_id
+      - report
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+          readOnly: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
+          readOnly: true
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+          readOnly: true
+      required:
+      - answers
+      - fields
+      - id
+      - reports
+      - status
+    ComposeProfileSnapshot:
+      type: object
+      description: Compose a profile snapshot from a template, specification, fields, and answers
+      properties:
+        template_id:
+          type: integer
+          writeOnly: true
+        specification:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        created_field_ids:
+          type: array
+          items:
+            type: integer
+          writeOnly: true
+        answer_ids:
+          type: array
+          items:
+            type: integer
+          writeOnly: true
+        profile:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+      required:
+      - answer_ids
+      - created_field_ids
+      - profile
+      - specification
+      - template_id
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
     Answer:
       type: object
       properties:

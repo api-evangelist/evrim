@@ -174,71 +174,23 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SnapshotCost:
+    CreatedFieldCosts:
       type: object
       properties:
-        id:
+        field_id:
           type: integer
           writeOnly: true
-        field_costs:
-          type: number
-          format: double
-          readOnly: true
-        answer_costs:
-          type: number
-          format: double
-          readOnly: true
-        total_cost:
-          type: number
-          format: double
-          readOnly: true
-      required:
-      - answer_costs
-      - field_costs
-      - id
-      - total_cost
-    AnswerCosts:
-      type: object
-      properties:
         id:
           type: integer
           readOnly: true
-        answer_id:
-          type: integer
-          writeOnly: true
         total:
           type: number
           format: double
           readOnly: true
       required:
-      - answer_id
+      - field_id
       - id
       - total
-    PaginatedCreatedFieldCostsList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreatedFieldCosts'
     PaginatedAnswerCostsList:
       type: object
       required:
@@ -264,23 +216,71 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AnswerCosts'
-    CreatedFieldCosts:
+    PaginatedCreatedFieldCostsList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedFieldCosts'
+    AnswerCosts:
       type: object
       properties:
-        field_id:
-          type: integer
-          writeOnly: true
         id:
           type: integer
           readOnly: true
+        answer_id:
+          type: integer
+          writeOnly: true
         total:
           type: number
           format: double
           readOnly: true
       required:
-      - field_id
+      - answer_id
       - id
       - total
+    SnapshotCost:
+      type: object
+      properties:
+        id:
+          type: integer
+          writeOnly: true
+        field_costs:
+          type: number
+          format: double
+          readOnly: true
+        answer_costs:
+          type: number
+          format: double
+          readOnly: true
+        total_cost:
+          type: number
+          format: double
+          readOnly: true
+      required:
+      - answer_costs
+      - field_costs
+      - id
+      - total_cost
   securitySchemes:
     knoxApiToken:
       type: http

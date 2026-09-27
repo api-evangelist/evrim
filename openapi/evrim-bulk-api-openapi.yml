@@ -116,103 +116,58 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BulkJob:
+    Field:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
-        template_id:
-          type: integer
-          writeOnly: true
-        specifications:
-          type: array
-          items:
-            type: string
-            maxLength: 510
-          writeOnly: true
-        template:
-          allOf:
-          - $ref: '#/components/schemas/Template'
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        error:
-          type: string
-          readOnly: true
-          maxLength: 1000
-        profiles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Profile'
-          readOnly: true
-      required:
-      - error
-      - id
-      - profiles
-      - specifications
-      - status
-      - template
-      - template_id
-    Template:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
         name:
           type: string
           maxLength: 255
         description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
           type:
-          - string
+          - integer
           - 'null'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        questions:
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
           type: array
           items:
             type: string
             maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
       required:
-      - fields
-      - id
+      - description
       - name
-    Snapshot:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        answers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Answer'
-          readOnly: true
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreatedField'
-          readOnly: true
-        reports:
-          type: array
-          items:
-            $ref: '#/components/schemas/Report'
-          readOnly: true
-      required:
-      - answers
-      - fields
-      - id
-      - reports
-      - status
+      - rel_template
+      - type
     CreatedField:
       type: object
       properties:
@@ -295,46 +250,46 @@ components:
       - status
       - type
       - value
-    Tag:
+    BulkJob:
       type: object
       properties:
         id:
           type: integer
           readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - name
-    Report:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        profile_id:
+        template_id:
           type: integer
           writeOnly: true
-        outline_id:
-          type: integer
+        specifications:
+          type: array
+          items:
+            type: string
+            maxLength: 510
           writeOnly: true
-        outline:
+        template:
           allOf:
-          - $ref: '#/components/schemas/Outline'
+          - $ref: '#/components/schemas/Template'
           readOnly: true
-        report:
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        error:
+          type: string
+          readOnly: true
+          maxLength: 1000
+        profiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
           readOnly: true
       required:
+      - error
       - id
-      - outline
-      - outline_id
-      - profile_id
-      - report
+      - profiles
+      - specifications
+      - status
+      - template
+      - template_id
     Outline:
       type: object
       properties:
@@ -364,83 +319,6 @@ components:
       - profile_id
       - report_title
       - section_titles
-    PaginatedBulkJobList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkJob'
-    Field:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
-          type:
-          - integer
-          - 'null'
-          writeOnly: true
-        rel_template:
-          type:
-          - integer
-          - 'null'
-          readOnly: true
-        enum_values:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 255
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
-      required:
-      - description
-      - name
-      - rel_template
-      - type
     Profile:
       type: object
       properties:
@@ -478,6 +356,61 @@ components:
       - specification
       - template
       - template_id
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        outline_id:
+          type: integer
+          writeOnly: true
+        outline:
+          allOf:
+          - $ref: '#/components/schemas/Outline'
+          readOnly: true
+        report:
+          readOnly: true
+      required:
+      - id
+      - outline
+      - outline_id
+      - profile_id
+      - report
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+          readOnly: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
+          readOnly: true
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+          readOnly: true
+      required:
+      - answers
+      - fields
+      - id
+      - reports
+      - status
     BulkProfilesToCollection:
       type: object
       properties:
@@ -492,6 +425,73 @@ components:
       required:
       - collection_id
       - profile_ids
+    PaginatedBulkJobList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkJob'
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+      required:
+      - fields
+      - id
+      - name
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
     Answer:
       type: object
       properties:

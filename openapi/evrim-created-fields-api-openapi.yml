@@ -204,32 +204,58 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Template:
+    Field:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
         name:
           type: string
           maxLength: 255
         description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
           type:
-          - string
+          - integer
           - 'null'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        questions:
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
           type: array
           items:
             type: string
             maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
       required:
-      - fields
-      - id
+      - description
       - name
+      - rel_template
+      - type
     CreatedFieldToProfile:
       type: object
       properties:
@@ -393,58 +419,6 @@ components:
           type:
           - boolean
           - 'null'
-    Field:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
-          type:
-          - integer
-          - 'null'
-          writeOnly: true
-        rel_template:
-          type:
-          - integer
-          - 'null'
-          readOnly: true
-        enum_values:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 255
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
-      required:
-      - description
-      - name
-      - rel_template
-      - type
     PaginatedCreatedFieldList:
       type: object
       required:
@@ -470,6 +444,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CreatedField'
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+      required:
+      - fields
+      - id
+      - name
   securitySchemes:
     knoxApiToken:
       type: http

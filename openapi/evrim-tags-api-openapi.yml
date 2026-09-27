@@ -275,79 +275,58 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Template:
+    Field:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
         name:
           type: string
           maxLength: 255
         description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
           type:
-          - string
+          - integer
           - 'null'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        questions:
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
           type: array
           items:
             type: string
             maxLength: 255
-      required:
-      - fields
-      - id
-      - name
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
+        enum_many:
+          type: boolean
+        sources:
           type:
-          - string
+          - array
           - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
       required:
-      - id
+      - description
       - name
-    Snapshot:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        answers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Answer'
-          readOnly: true
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreatedField'
-          readOnly: true
-        reports:
-          type: array
-          items:
-            $ref: '#/components/schemas/Report'
-          readOnly: true
-      required:
-      - answers
-      - fields
-      - id
-      - reports
-      - status
+      - rel_template
+      - type
     CreatedField:
       type: object
       properties:
@@ -430,41 +409,31 @@ components:
       - status
       - type
       - value
-    Report:
+    PaginatedTagList:
       type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        profile_id:
-          type: integer
-          writeOnly: true
-        outline_id:
-          type: integer
-          writeOnly: true
-        outline:
-          allOf:
-          - $ref: '#/components/schemas/Outline'
-          readOnly: true
-        report:
-          readOnly: true
       required:
-      - id
-      - outline
-      - outline_id
-      - profile_id
-      - report
-    TagProfiles:
-      type: object
-      description: Add tag to all profiles
+      - count
+      - results
       properties:
-        profile_ids:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
           type: array
           items:
-            type: integer
-          writeOnly: true
-      required:
-      - profile_ids
+            $ref: '#/components/schemas/Tag'
     Outline:
       type: object
       properties:
@@ -531,6 +500,94 @@ components:
       - specification
       - template
       - template_id
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+          readOnly: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
+          readOnly: true
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+          readOnly: true
+      required:
+      - answers
+      - fields
+      - id
+      - reports
+      - status
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        outline_id:
+          type: integer
+          writeOnly: true
+        outline:
+          allOf:
+          - $ref: '#/components/schemas/Outline'
+          readOnly: true
+        report:
+          readOnly: true
+      required:
+      - id
+      - outline
+      - outline_id
+      - profile_id
+      - report
+    PatchedTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+    TagProfiles:
+      type: object
+      description: Add tag to all profiles
+      properties:
+        profile_ids:
+          type: array
+          items:
+            type: integer
+          writeOnly: true
+      required:
+      - profile_ids
+    TagToCollection:
+      type: object
+      description: Add all profiles with a specific tag to a collection
+      properties:
+        collection_id:
+          type: integer
+          writeOnly: true
+      required:
+      - collection_id
     PaginatedProfileList:
       type: object
       required:
@@ -556,58 +613,48 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Profile'
-    Field:
+    Template:
       type: object
       properties:
         id:
           type: integer
+          readOnly: true
         name:
           type: string
           maxLength: 255
         description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
           type:
-          - integer
+          - string
           - 'null'
-          writeOnly: true
-        rel_template:
-          type:
-          - integer
-          - 'null'
-          readOnly: true
-        enum_values:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
           type: array
           items:
             type: string
             maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 255
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
       required:
-      - description
+      - fields
+      - id
       - name
-      - rel_template
-      - type
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
     Answer:
       type: object
       properties:
@@ -629,53 +676,6 @@ components:
       - answer
       - id
       - question
-    PatchedTag:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type:
-          - string
-          - 'null'
-    PaginatedTagList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-    TagToCollection:
-      type: object
-      description: Add all profiles with a specific tag to a collection
-      properties:
-        collection_id:
-          type: integer
-          writeOnly: true
-      required:
-      - collection_id
   securitySchemes:
     knoxApiToken:
       type: http

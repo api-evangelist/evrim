@@ -53,7 +53,7 @@ tags:
 - Profiles
 - Entity Resolution
 - Defense
-- Financial-Services
+- Financial Services
 - Government
 tags_raw:
 - Company
@@ -65,9 +65,10 @@ tags_raw:
 - Defense
 - Financial Services
 - Government
+- Financial-Services
 apis:
 - aid: evrim:evrim-answers-api
-  name: Evrim answers API
+  name: Evrim Answers API
   description: The answers API from Evrim — 2 operation(s) for answers.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -79,7 +80,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-answers-api-openapi.yml
 - aid: evrim:evrim-blank-api
-  name: Evrim blank API
+  name: Evrim Blank API
   description: The blank API from Evrim — 2 operation(s) for blank.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -91,7 +92,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-blank-api-openapi.yml
 - aid: evrim:evrim-bulk-api
-  name: Evrim bulk API
+  name: Evrim Bulk API
   description: The bulk API from Evrim — 3 operation(s) for bulk.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -103,7 +104,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-bulk-api-openapi.yml
 - aid: evrim:evrim-collections-api
-  name: Evrim collections API
+  name: Evrim Collections API
   description: The collections API from Evrim — 2 operation(s) for collections.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -115,7 +116,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-collections-api-openapi.yml
 - aid: evrim:evrim-compose-api
-  name: Evrim compose API
+  name: Evrim Compose API
   description: The compose API from Evrim — 1 operation(s) for compose.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -127,7 +128,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-compose-api-openapi.yml
 - aid: evrim:evrim-costs-api
-  name: Evrim costs API
+  name: Evrim Costs API
   description: The costs API from Evrim — 8 operation(s) for costs.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -139,7 +140,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-costs-api-openapi.yml
 - aid: evrim:evrim-created-fields-api
-  name: Evrim created-fields API
+  name: Evrim Created Fields API
   description: The created-fields API from Evrim — 3 operation(s) for created-fields.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -149,7 +150,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-created-fields-api-openapi.yml
 - aid: evrim:evrim-extract-api
-  name: Evrim extract API
+  name: Evrim Extract API
   description: The extract API from Evrim — 8 operation(s) for extract.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -161,7 +162,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-extract-api-openapi.yml
 - aid: evrim:evrim-fields-api
-  name: Evrim fields API
+  name: Evrim Fields API
   description: The fields API from Evrim — 3 operation(s) for fields.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -173,7 +174,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-fields-api-openapi.yml
 - aid: evrim:evrim-health-api
-  name: Evrim health API
+  name: Evrim Health API
   description: The health API from Evrim — 2 operation(s) for health.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -185,7 +186,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-health-api-openapi.yml
 - aid: evrim:evrim-prod-api
-  name: Evrim prod API
+  name: Evrim Prod API
   description: The prod API from Evrim — 1 operation(s) for prod.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -197,7 +198,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-prod-api-openapi.yml
 - aid: evrim:evrim-profiles-api
-  name: Evrim profiles API
+  name: Evrim Profiles API
   description: The profiles API from Evrim — 10 operation(s) for profiles.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -209,7 +210,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-profiles-api-openapi.yml
 - aid: evrim:evrim-prompt-templates-api
-  name: Evrim prompt-templates API
+  name: Evrim Prompt Templates API
   description: The prompt-templates API from Evrim — 2 operation(s) for prompt-templates.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -221,7 +222,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-prompt-templates-api-openapi.yml
 - aid: evrim:evrim-questions-api
-  name: Evrim questions API
+  name: Evrim Questions API
   description: The questions API from Evrim — 1 operation(s) for questions.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -233,7 +234,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-questions-api-openapi.yml
 - aid: evrim:evrim-snapshots-api
-  name: Evrim snapshots API
+  name: Evrim Snapshots API
   description: The snapshots API from Evrim — 2 operation(s) for snapshots.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -245,7 +246,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-snapshots-api-openapi.yml
 - aid: evrim:evrim-tags-api
-  name: Evrim tags API
+  name: Evrim Tags API
   description: The tags API from Evrim — 4 operation(s) for tags.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -257,7 +258,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-tags-api-openapi.yml
 - aid: evrim:evrim-templates-api
-  name: Evrim templates API
+  name: Evrim Templates API
   description: The templates API from Evrim — 3 operation(s) for templates.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
@@ -269,7 +270,7 @@ apis:
   - type: OpenAPI
     url: openapi/evrim-templates-api-openapi.yml
 - aid: evrim:evrim-transform-api
-  name: Evrim transform API
+  name: Evrim Transform API
   description: The transform API from Evrim — 1 operation(s) for transform.
   humanURL: https://docs.evrim.ai
   baseURL: https://api.evrim.ai
