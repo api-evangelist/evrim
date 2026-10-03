@@ -139,38 +139,6 @@ components:
       - name
       - rel_template
       - type
-    StatusEnum:
-      enum:
-      - W
-      - P
-      - C
-      - F
-      type: string
-      description: '* `W` - WAITING
-
-        * `P` - PROCESSING
-
-        * `C` - COMPLETED
-
-        * `F` - FAILED'
-    PromptTemplate:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        prompt:
-          type: string
-        status:
-          $ref: '#/components/schemas/StatusEnum'
-        template:
-          allOf:
-          - $ref: '#/components/schemas/Template'
-          readOnly: true
-      required:
-      - id
-      - prompt
-      - template
     PaginatedPromptTemplateList:
       type: object
       required:
@@ -222,6 +190,38 @@ components:
       - fields
       - id
       - name
+    PromptTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        prompt:
+          type: string
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          readOnly: true
+      required:
+      - id
+      - prompt
+      - template
+    StatusEnum:
+      enum:
+      - W
+      - P
+      - C
+      - F
+      type: string
+      description: '* `W` - WAITING
+
+        * `P` - PROCESSING
+
+        * `C` - COMPLETED
+
+        * `F` - FAILED'
   securitySchemes:
     knoxApiToken:
       type: http

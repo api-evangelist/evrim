@@ -60,6 +60,35 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Outline:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        report_title:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        section_titles:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        outline: {}
+        perspective:
+          type: string
+          maxLength: 255
+      required:
+      - id
+      - perspective
+      - profile_id
+      - report_title
+      - section_titles
     Field:
       type: object
       properties:
@@ -112,6 +141,108 @@ components:
       - name
       - rel_template
       - type
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        outline_id:
+          type: integer
+          writeOnly: true
+        outline:
+          allOf:
+          - $ref: '#/components/schemas/Outline'
+          readOnly: true
+        report:
+          readOnly: true
+      required:
+      - id
+      - outline
+      - outline_id
+      - profile_id
+      - report
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+          readOnly: true
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreatedField'
+          readOnly: true
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+          readOnly: true
+      required:
+      - answers
+      - fields
+      - id
+      - reports
+      - status
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        answer:
+          readOnly: true
+        question:
+          type: string
+          readOnly: true
+          maxLength: 510
+        source:
+          type:
+          - string
+          - 'null'
+          maxLength: 510
+      required:
+      - answer
+      - id
+      - question
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+      required:
+      - fields
+      - id
+      - name
     CreatedField:
       type: object
       properties:
@@ -219,137 +350,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Snapshot'
-    Outline:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        profile_id:
-          type: integer
-          writeOnly: true
-        report_title:
-          type: string
-          writeOnly: true
-          maxLength: 255
-        section_titles:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-          writeOnly: true
-        outline: {}
-        perspective:
-          type: string
-          maxLength: 255
-      required:
-      - id
-      - perspective
-      - profile_id
-      - report_title
-      - section_titles
-    Report:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        profile_id:
-          type: integer
-          writeOnly: true
-        outline_id:
-          type: integer
-          writeOnly: true
-        outline:
-          allOf:
-          - $ref: '#/components/schemas/Outline'
-          readOnly: true
-        report:
-          readOnly: true
-      required:
-      - id
-      - outline
-      - outline_id
-      - profile_id
-      - report
-    Snapshot:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        answers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Answer'
-          readOnly: true
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreatedField'
-          readOnly: true
-        reports:
-          type: array
-          items:
-            $ref: '#/components/schemas/Report'
-          readOnly: true
-      required:
-      - answers
-      - fields
-      - id
-      - reports
-      - status
-    Template:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type:
-          - string
-          - 'null'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        questions:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-      required:
-      - fields
-      - id
-      - name
-    Answer:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        answer:
-          readOnly: true
-        question:
-          type: string
-          readOnly: true
-          maxLength: 510
-        source:
-          type:
-          - string
-          - 'null'
-          maxLength: 510
-      required:
-      - answer
-      - id
-      - question
   securitySchemes:
     knoxApiToken:
       type: http

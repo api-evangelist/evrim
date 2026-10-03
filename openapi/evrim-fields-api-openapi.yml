@@ -233,6 +233,61 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    FieldToTemplate:
+      type: object
+      properties:
+        template_id:
+          type: integer
+          writeOnly: true
+      required:
+      - template_id
+    PatchedField:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type:
+          - integer
+          - 'null'
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
     Field:
       type: object
       properties:
@@ -285,61 +340,6 @@ components:
       - name
       - rel_template
       - type
-    PatchedField:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
-          type:
-          - integer
-          - 'null'
-          writeOnly: true
-        rel_template:
-          type:
-          - integer
-          - 'null'
-          readOnly: true
-        enum_values:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 255
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
-    FieldToTemplate:
-      type: object
-      properties:
-        template_id:
-          type: integer
-          writeOnly: true
-      required:
-      - template_id
     PaginatedFieldList:
       type: object
       required:

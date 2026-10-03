@@ -324,7 +324,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginatedExtractValueList:
+    PaginatedExtractionList:
       type: object
       required:
       - count
@@ -348,86 +348,7 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/ExtractValue'
-    PaginatedExtractionCommandList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractionCommand'
-    Extraction:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        query:
-          type: string
-          maxLength: 510
-        source:
-          type: string
-          maxLength: 510
-        extraction:
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        error:
-          type: string
-          readOnly: true
-          maxLength: 1000
-      required:
-      - error
-      - extraction
-      - id
-      - query
-      - source
-      - status
-    ExtractionCommand:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        query:
-          type: string
-          maxLength: 510
-        extraction:
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        error:
-          type: string
-          readOnly: true
-          maxLength: 1000
-      required:
-      - error
-      - extraction
-      - id
-      - query
-      - status
+            $ref: '#/components/schemas/Extraction'
     ExtractRelationship:
       type: object
       properties:
@@ -464,6 +385,56 @@ components:
       - status
       - target
       - url
+    ExtractionCommand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        query:
+          type: string
+          maxLength: 510
+        extraction:
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        error:
+          type: string
+          readOnly: true
+          maxLength: 1000
+      required:
+      - error
+      - extraction
+      - id
+      - query
+      - status
+    PaginatedExtractValueList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractValue'
     PaginatedExtractRelationshipList:
       type: object
       required:
@@ -541,7 +512,7 @@ components:
       - specification
       - status
       - type
-    PaginatedExtractionList:
+    PaginatedExtractionCommandList:
       type: object
       required:
       - count
@@ -565,7 +536,36 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/Extraction'
+            $ref: '#/components/schemas/ExtractionCommand'
+    Extraction:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        query:
+          type: string
+          maxLength: 510
+        source:
+          type: string
+          maxLength: 510
+        extraction:
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        error:
+          type: string
+          readOnly: true
+          maxLength: 1000
+      required:
+      - error
+      - extraction
+      - id
+      - query
+      - source
+      - status
   securitySchemes:
     knoxApiToken:
       type: http
