@@ -1,30 +1,28 @@
-# Kin Score artifact — evrim — 2026-09-01T222808
+# Kin Score artifact — evrim — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: evrim
-  schema_version: 0.18.0
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T222808
-  composite: 31.2
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 27.9
   band: thin
   facets:
-    discoverability: 68.5
-    contract_quality: 47.5
-    governance: 18.2
+    discoverability: 66.1
+    contract_quality: 41.9
+    contract_governance: 18.2
     operational_transparency: 18.4
     developer_ergonomics: 25.6
-    commercial_clarity: 6.6
-    contract_governance: 18.2
     access_clarity: 6.6
   agent_readiness:
-    score: 25.2
+    score: 21.8
     band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: false
       reversibility_documented: false
-      mcp_server: documented
+      mcp_server: false
       auth_clarity: bearer
       idempotency: false
       error_semantics: documented
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Government & Public Sector
     regime_id: government
-    score: 31.5
+    score: 16.7
     matched_via: tags
   provenance:
     mcp: first-party
@@ -54,4 +52,4 @@ kin_score:
       total: 18
       derived: 0
       coverage: 0.0
-      callable: 100.0
+      callable: 0.0
