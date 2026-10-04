@@ -233,14 +233,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    FieldToTemplate:
-      type: object
-      properties:
-        template_id:
-          type: integer
-          writeOnly: true
-      required:
-      - template_id
     PatchedField:
       type: object
       properties:
@@ -288,6 +280,39 @@ components:
         raw_documents:
           type: boolean
           default: false
+    PaginatedFieldList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+    FieldToTemplate:
+      type: object
+      properties:
+        template_id:
+          type: integer
+          writeOnly: true
+      required:
+      - template_id
     Field:
       type: object
       properties:
@@ -340,31 +365,6 @@ components:
       - name
       - rel_template
       - type
-    PaginatedFieldList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
   securitySchemes:
     knoxApiToken:
       type: http

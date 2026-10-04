@@ -324,31 +324,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    PaginatedExtractionList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Extraction'
     ExtractRelationship:
       type: object
       properties:
@@ -410,7 +385,7 @@ components:
       - id
       - query
       - status
-    PaginatedExtractValueList:
+    PaginatedExtractionList:
       type: object
       required:
       - count
@@ -434,7 +409,32 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/ExtractValue'
+            $ref: '#/components/schemas/Extraction'
+    PaginatedExtractionCommandList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionCommand'
     PaginatedExtractRelationshipList:
       type: object
       required:
@@ -512,7 +512,7 @@ components:
       - specification
       - status
       - type
-    PaginatedExtractionCommandList:
+    PaginatedExtractValueList:
       type: object
       required:
       - count
@@ -536,7 +536,7 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/ExtractionCommand'
+            $ref: '#/components/schemas/ExtractValue'
     Extraction:
       type: object
       properties:

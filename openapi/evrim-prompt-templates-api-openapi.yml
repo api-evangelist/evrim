@@ -87,6 +87,89 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    StatusEnum:
+      enum:
+      - W
+      - P
+      - C
+      - F
+      type: string
+      description: '* `W` - WAITING
+
+        * `P` - PROCESSING
+
+        * `C` - COMPLETED
+
+        * `F` - FAILED'
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        questions:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+      required:
+      - fields
+      - id
+      - name
+    PromptTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        prompt:
+          type: string
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        template:
+          allOf:
+          - $ref: '#/components/schemas/Template'
+          readOnly: true
+      required:
+      - id
+      - prompt
+      - template
+    PaginatedPromptTemplateList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromptTemplate'
     Field:
       type: object
       properties:
@@ -139,89 +222,6 @@ components:
       - name
       - rel_template
       - type
-    PaginatedPromptTemplateList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/PromptTemplate'
-    Template:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type:
-          - string
-          - 'null'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        questions:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-      required:
-      - fields
-      - id
-      - name
-    PromptTemplate:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        prompt:
-          type: string
-        status:
-          $ref: '#/components/schemas/StatusEnum'
-        template:
-          allOf:
-          - $ref: '#/components/schemas/Template'
-          readOnly: true
-      required:
-      - id
-      - prompt
-      - template
-    StatusEnum:
-      enum:
-      - W
-      - P
-      - C
-      - F
-      type: string
-      description: '* `W` - WAITING
-
-        * `P` - PROCESSING
-
-        * `C` - COMPLETED
-
-        * `F` - FAILED'
   securitySchemes:
     knoxApiToken:
       type: http
