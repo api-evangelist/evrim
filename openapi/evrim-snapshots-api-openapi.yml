@@ -91,35 +91,58 @@ components:
       - id
       - reports
       - status
-    Outline:
+    Field:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
-        profile_id:
-          type: integer
-          writeOnly: true
-        report_title:
+        name:
           type: string
-          writeOnly: true
           maxLength: 255
-        section_titles:
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type:
+          - integer
+          - 'null'
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
           type: array
           items:
             type: string
             maxLength: 255
-          writeOnly: true
-        outline: {}
-        perspective:
-          type: string
-          maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
       required:
-      - id
-      - perspective
-      - profile_id
-      - report_title
-      - section_titles
+      - description
+      - name
+      - rel_template
+      - type
     Template:
       type: object
       properties:
@@ -253,6 +276,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Snapshot'
+    Outline:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        report_title:
+          type: string
+          writeOnly: true
+          maxLength: 255
+        section_titles:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        outline: {}
+        perspective:
+          type: string
+          maxLength: 255
+      required:
+      - id
+      - perspective
+      - profile_id
+      - report_title
+      - section_titles
     Report:
       type: object
       properties:
@@ -298,58 +350,6 @@ components:
       - answer
       - id
       - question
-    Field:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
-          type:
-          - integer
-          - 'null'
-          writeOnly: true
-        rel_template:
-          type:
-          - integer
-          - 'null'
-          readOnly: true
-        enum_values:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 255
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
-      required:
-      - description
-      - name
-      - rel_template
-      - type
   securitySchemes:
     knoxApiToken:
       type: http

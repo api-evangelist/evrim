@@ -172,6 +172,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Collection:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+          readOnly: true
+      required:
+      - collection
+      - description
+      - id
+      - name
     Snapshot:
       type: object
       properties:
@@ -203,35 +225,58 @@ components:
       - id
       - reports
       - status
-    Outline:
+    Field:
       type: object
       properties:
         id:
           type: integer
-          readOnly: true
-        profile_id:
-          type: integer
-          writeOnly: true
-        report_title:
+        name:
           type: string
-          writeOnly: true
           maxLength: 255
-        section_titles:
+        description:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 3
+        rel_template_id:
+          type:
+          - integer
+          - 'null'
+          writeOnly: true
+        rel_template:
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        enum_values:
           type: array
           items:
             type: string
             maxLength: 255
-          writeOnly: true
-        outline: {}
-        perspective:
-          type: string
-          maxLength: 255
+        enum_many:
+          type: boolean
+        sources:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 255
+        directed:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        raw_documents:
+          type: boolean
+          default: false
       required:
-      - id
-      - perspective
-      - profile_id
-      - report_title
-      - section_titles
+      - description
+      - name
+      - rel_template
+      - type
     Template:
       type: object
       properties:
@@ -340,62 +385,7 @@ components:
       - status
       - type
       - value
-    PatchedCollection:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/Profile'
-          readOnly: true
-    Collection:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/Profile'
-          readOnly: true
-      required:
-      - collection
-      - description
-      - id
-      - name
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - name
-    Report:
+    Outline:
       type: object
       properties:
         id:
@@ -404,21 +394,26 @@ components:
         profile_id:
           type: integer
           writeOnly: true
-        outline_id:
-          type: integer
+        report_title:
+          type: string
           writeOnly: true
-        outline:
-          allOf:
-          - $ref: '#/components/schemas/Outline'
-          readOnly: true
-        report:
-          readOnly: true
+          maxLength: 255
+        section_titles:
+          type: array
+          items:
+            type: string
+            maxLength: 255
+          writeOnly: true
+        outline: {}
+        perspective:
+          type: string
+          maxLength: 255
       required:
       - id
-      - outline
-      - outline_id
+      - perspective
       - profile_id
-      - report
+      - report_title
+      - section_titles
     PaginatedCollectionList:
       type: object
       required:
@@ -481,6 +476,63 @@ components:
       - specification
       - template
       - template_id
+    Report:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        profile_id:
+          type: integer
+          writeOnly: true
+        outline_id:
+          type: integer
+          writeOnly: true
+        outline:
+          allOf:
+          - $ref: '#/components/schemas/Outline'
+          readOnly: true
+        report:
+          readOnly: true
+      required:
+      - id
+      - outline
+      - outline_id
+      - profile_id
+      - report
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - name
+    PatchedCollection:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 255
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+          readOnly: true
     Answer:
       type: object
       properties:
@@ -502,58 +554,6 @@ components:
       - answer
       - id
       - question
-    Field:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-          maxLength: 255
-        type:
-          type: string
-          maxLength: 3
-        rel_template_id:
-          type:
-          - integer
-          - 'null'
-          writeOnly: true
-        rel_template:
-          type:
-          - integer
-          - 'null'
-          readOnly: true
-        enum_values:
-          type: array
-          items:
-            type: string
-            maxLength: 255
-        enum_many:
-          type: boolean
-        sources:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 255
-        directed:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        raw_documents:
-          type: boolean
-          default: false
-      required:
-      - description
-      - name
-      - rel_template
-      - type
   securitySchemes:
     knoxApiToken:
       type: http

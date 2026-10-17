@@ -324,6 +324,56 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    PaginatedExtractRelationshipList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractRelationship'
+    ExtractionCommand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        query:
+          type: string
+          maxLength: 510
+        extraction:
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        error:
+          type: string
+          readOnly: true
+          maxLength: 1000
+      required:
+      - error
+      - extraction
+      - id
+      - query
+      - status
     ExtractRelationship:
       type: object
       properties:
@@ -360,158 +410,6 @@ components:
       - status
       - target
       - url
-    ExtractionCommand:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        query:
-          type: string
-          maxLength: 510
-        extraction:
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        error:
-          type: string
-          readOnly: true
-          maxLength: 1000
-      required:
-      - error
-      - extraction
-      - id
-      - query
-      - status
-    PaginatedExtractionList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Extraction'
-    PaginatedExtractionCommandList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractionCommand'
-    PaginatedExtractRelationshipList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractRelationship'
-    ExtractValue:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        status:
-          type: string
-          readOnly: true
-          maxLength: 1
-        name:
-          type: string
-          maxLength: 510
-        type:
-          type: string
-          maxLength: 510
-        description:
-          type: string
-          maxLength: 510
-        specification:
-          type: string
-          maxLength: 510
-        rerank:
-          type: boolean
-          default: true
-        source:
-          type: string
-          maxLength: 510
-        raw_documents:
-          type: boolean
-          default: false
-        keyword_search:
-          type: boolean
-          default: true
-        urls:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            maxLength: 510
-        extraction:
-          readOnly: true
-      required:
-      - description
-      - extraction
-      - id
-      - name
-      - source
-      - specification
-      - status
-      - type
     PaginatedExtractValueList:
       type: object
       required:
@@ -566,6 +464,108 @@ components:
       - query
       - source
       - status
+    ExtractValue:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+          maxLength: 1
+        name:
+          type: string
+          maxLength: 510
+        type:
+          type: string
+          maxLength: 510
+        description:
+          type: string
+          maxLength: 510
+        specification:
+          type: string
+          maxLength: 510
+        rerank:
+          type: boolean
+          default: true
+        source:
+          type: string
+          maxLength: 510
+        raw_documents:
+          type: boolean
+          default: false
+        keyword_search:
+          type: boolean
+          default: true
+        urls:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            maxLength: 510
+        extraction:
+          readOnly: true
+      required:
+      - description
+      - extraction
+      - id
+      - name
+      - source
+      - specification
+      - status
+      - type
+    PaginatedExtractionList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Extraction'
+    PaginatedExtractionCommandList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractionCommand'
   securitySchemes:
     knoxApiToken:
       type: http
